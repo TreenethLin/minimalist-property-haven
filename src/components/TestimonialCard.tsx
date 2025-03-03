@@ -1,7 +1,7 @@
 
 import { Testimonial } from "@/lib/data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { StarFilled, StarOutlined } from "@ant-design/icons-react";
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
@@ -13,10 +13,9 @@ const TestimonialCard = ({ testimonial }: TestimonialCardProps) => {
       <CardContent className="pt-6 pb-0 flex-grow">
         <div className="flex mb-4">
           {[...Array(5)].map((_, i) => (
-            <Star 
-              key={i} 
-              className={`h-5 w-5 ${i < testimonial.rating ? 'text-amber-400 fill-amber-400' : 'text-muted-foreground'}`} 
-            />
+            i < testimonial.rating 
+              ? <StarFilled key={i} className="text-amber-400 h-5 w-5" /> 
+              : <StarOutlined key={i} className="text-muted-foreground h-5 w-5" />
           ))}
         </div>
         <blockquote className="text-lg">
