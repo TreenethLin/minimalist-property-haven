@@ -1,10 +1,9 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { MapPin, Phone, Mail, ArrowRight, CheckCircle, Facebook, Instagram, MessageCircle, Tiktok } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight, CheckCircle, Facebook, Instagram, MessageCircle } from "lucide-react";
 import { agent } from "@/lib/data";
 
 const ContactForm = () => {
@@ -106,7 +105,6 @@ const ContactForm = () => {
                 </div>
               </div>
 
-              {/* Social Media Links */}
               <div className="mt-8 pt-6 border-t border-border">
                 <p className="font-medium mb-4">Connect with me on social media</p>
                 <div className="flex flex-wrap gap-3">
@@ -123,11 +121,6 @@ const ContactForm = () => {
                   <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
                     <a href="https://line.me" target="_blank" rel="noopener noreferrer" aria-label="Line">
                       <MessageCircle className="h-5 w-5 text-[#00B900]" />
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
-                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                      <Tiktok className="h-5 w-5" />
                     </a>
                   </Button>
                 </div>
