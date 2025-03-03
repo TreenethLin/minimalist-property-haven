@@ -1,7 +1,8 @@
 
 import { Testimonial } from "@/lib/data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { StarFilled, StarOutlined } from "@ant-design/icons-react";
+import StarFilled from "@ant-design/icons-react/lib/icons/StarFilled";
+import StarOutlined from "@ant-design/icons-react/lib/icons/StarOutlined";
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
