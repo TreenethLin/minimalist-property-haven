@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface BlogPostProps {
   post: BlogPostType;
@@ -53,9 +54,9 @@ const BlogPost = ({ post }: BlogPostProps) => {
         </p>
       </CardContent>
       <CardFooter className="p-6 pt-0">
-        <div className="text-sm font-medium underline-offset-4 hover:underline text-primary">
+        <Link to={`/blog/${post.id}`} className="text-sm font-medium underline-offset-4 hover:underline text-primary">
           Read More
-        </div>
+        </Link>
       </CardFooter>
     </Card>
   );

@@ -4,6 +4,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Bed, Bath, Square, MapPin } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 interface PropertyCardProps {
   property: Property;
@@ -90,6 +91,13 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             </Badge>
           )}
         </div>
+        <Link 
+          to={`/property/${property.id}`} 
+          className="text-sm font-medium text-primary hover:underline"
+          onClick={(e) => e.stopPropagation()}
+        >
+          View Details
+        </Link>
       </CardFooter>
     </Card>
   );

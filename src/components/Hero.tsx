@@ -3,6 +3,7 @@ import { agent } from "@/lib/data";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
@@ -32,9 +33,11 @@ const Hero = () => {
             Curating exceptional properties that align with your lifestyle and aspirations. Personalized service from start to finish.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button size="lg" className="group">
-              View Properties
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Button size="lg" className="group" asChild>
+              <Link to="/listings">
+                View Properties
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
               <a href="#contact">Contact Me</a>

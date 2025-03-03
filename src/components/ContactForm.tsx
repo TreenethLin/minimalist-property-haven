@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { MapPin, Phone, Mail, ArrowRight, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Mail, ArrowRight, CheckCircle, Facebook, Instagram, MessageCircle, Tiktok } from "lucide-react";
 import { agent } from "@/lib/data";
 
 const ContactForm = () => {
@@ -56,7 +56,7 @@ const ContactForm = () => {
             <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
             Get In Touch
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Contact Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Connect With Me</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Whether you're looking to buy, sell, or just have questions about real estate, I'm here to help.
           </p>
@@ -103,6 +103,33 @@ const ContactForm = () => {
                       Design District, NY 10001
                     </p>
                   </div>
+                </div>
+              </div>
+
+              {/* Social Media Links */}
+              <div className="mt-8 pt-6 border-t border-border">
+                <p className="font-medium mb-4">Connect with me on social media</p>
+                <div className="flex flex-wrap gap-3">
+                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                      <Facebook className="h-5 w-5 text-[#1877F2]" />
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                      <Instagram className="h-5 w-5 text-[#E4405F]" />
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
+                    <a href="https://line.me" target="_blank" rel="noopener noreferrer" aria-label="Line">
+                      <MessageCircle className="h-5 w-5 text-[#00B900]" />
+                    </a>
+                  </Button>
+                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
+                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                      <Tiktok className="h-5 w-5" />
+                    </a>
+                  </Button>
                 </div>
               </div>
 

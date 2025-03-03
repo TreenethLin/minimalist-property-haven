@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { blogPosts } from "@/lib/data";
 import BlogPost from "./BlogPost";
 import { Button } from "@/components/ui/button";
@@ -28,22 +29,25 @@ const BlogSection = () => {
             </p>
           </div>
           <div className="mt-6 md:mt-0">
-            <Button variant="outline" className="group">
-              View All Articles
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            <Button variant="outline" className="group" asChild>
+              <Link to="/blog">
+                View All Articles
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </Button>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
-            <div 
+          {blogPosts.slice(0, 3).map((post, index) => (
+            <Link 
               key={post.id}
-              className={`transform transition-all duration-700 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              to={`/blog/${post.id}`}
+              className={`block transform transition-all duration-700 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <BlogPost post={post} />
-            </div>
+            </Link>
           ))}
         </div>
       </div>

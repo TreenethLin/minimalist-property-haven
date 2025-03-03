@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { properties as allProperties } from "@/lib/data";
 import PropertyCard from "./PropertyCard";
 import { Button } from "@/components/ui/button";
@@ -75,18 +76,19 @@ const PropertyGrid = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {visibleProperties.map((property, index) => (
-            <div 
+            <Link
               key={property.id}
-              className={`transform transition-all duration-700 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              to={`/property/${property.id}`}
+              className={`block transform transition-all duration-700 ease-out hover:-translate-y-1 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <PropertyCard property={property} />
-            </div>
+            </Link>
           ))}
         </div>
 
-        {hasMore() && (
-          <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-12 gap-4">
+          {hasMore() && (
             <Button 
               variant="outline" 
               onClick={loadMore}
@@ -94,8 +96,12 @@ const PropertyGrid = () => {
             >
               Load More
             </Button>
-          </div>
-        )}
+          )}
+          
+          <Button asChild className="min-w-[150px]">
+            <Link to="/listings">View All Properties</Link>
+          </Button>
+        </div>
       </div>
     </section>
   );
