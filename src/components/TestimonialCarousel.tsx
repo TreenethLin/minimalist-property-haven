@@ -1,9 +1,10 @@
+
 import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { testimonials, Testimonial } from "@/lib/data";
 import TestimonialCard from "./TestimonialCard";
 import { Button } from "@/components/ui/button";
-import { LeftOutlined, RightOutlined } from "@ant-design/icons-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 // Mock fetch function to simulate API call
 const fetchTestimonials = async (): Promise<Testimonial[]> => {
@@ -170,7 +171,7 @@ const TestimonialCarousel = () => {
             onClick={handlePrev}
             aria-label="Previous testimonial"
           >
-            <LeftOutlined className="h-5 w-5" />
+            <ArrowLeft className="h-5 w-5" />
           </Button>
 
           <Button
@@ -180,7 +181,7 @@ const TestimonialCarousel = () => {
             onClick={handleNext}
             aria-label="Next testimonial"
           >
-            <RightOutlined className="h-5 w-5" />
+            <ArrowRight className="h-5 w-5" />
           </Button>
         </div>
       </div>
