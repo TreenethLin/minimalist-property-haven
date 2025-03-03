@@ -1,11 +1,9 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { testimonials, Testimonial } from "@/lib/data";
 import TestimonialCard from "./TestimonialCard";
 import { Button } from "@/components/ui/button";
-import LeftOutlined from "@ant-design/icons-react/lib/icons/LeftOutlined";
-import RightOutlined from "@ant-design/icons-react/lib/icons/RightOutlined";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons-react";
 
 // Mock fetch function to simulate API call
 const fetchTestimonials = async (): Promise<Testimonial[]> => {
