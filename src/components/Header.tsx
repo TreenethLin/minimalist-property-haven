@@ -1,8 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X, Home, Building, Building2, Key, User, ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -65,18 +64,6 @@ const Header = () => {
             </div>
           </nav>
 
-          {/* Desktop Action Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="text-sm font-medium">
-              <User className="h-4 w-4 mr-1" /> Login / Register
-            </Button>
-            <Button size="sm" className="text-sm font-medium gap-1 rounded-full" asChild>
-              <Link to="/listings">
-                Add Property <ArrowUpRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
           {/* Mobile Menu Button */}
           <button 
             className="md:hidden focus:outline-none"
@@ -100,12 +87,6 @@ const Header = () => {
         <Link to="/property/1" className="text-xl font-medium" onClick={() => setIsOpen(false)}>Property</Link>
         <Link to="/blog" className="text-xl font-medium" onClick={() => setIsOpen(false)}>Blog</Link>
         <span className="text-xl font-medium">Pages</span>
-        <Button variant="outline" onClick={() => setIsOpen(false)}>
-          <User className="h-4 w-4 mr-2" /> Login / Register
-        </Button>
-        <Button onClick={() => setIsOpen(false)} asChild>
-          <Link to="/listings">Add Property</Link>
-        </Button>
       </div>
     </header>
   );

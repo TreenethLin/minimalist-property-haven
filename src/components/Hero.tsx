@@ -63,7 +63,7 @@ const Hero = () => {
           </div>
 
           {/* Search Box */}
-          <form onSubmit={handleSearch} className="bg-white p-4 rounded-lg shadow-sm mt-4 flex flex-col space-y-4">
+          <form onSubmit={handleSearch} className="bg-white p-4 rounded-lg shadow-sm mt-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input 
@@ -72,21 +72,6 @@ const Hero = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
-            </div>
-            <div className="flex justify-between items-center">
-              <Button 
-                variant="outline" 
-                className="text-muted-foreground border-muted-foreground/30"
-                type="button"
-              >
-                Advanced
-              </Button>
-              <Button 
-                className="rounded-full w-12 h-12 p-0 flex items-center justify-center" 
-                type="submit"
-              >
-                <Search className="h-5 w-5" />
-              </Button>
             </div>
           </form>
 
