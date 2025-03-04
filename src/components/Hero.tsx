@@ -102,6 +102,33 @@ const Hero = () => {
               Villa
             </Button>
           </div>
+
+          {/* Official Partners Section */}
+          <div className="mt-10 space-y-3">
+            <p className="text-sm font-medium text-gray-500">OFFICIAL PARTNER</p>
+            <div className="flex flex-wrap items-center gap-6 md:gap-10">
+              <img 
+                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=100&h=50&q=80" 
+                alt="Partner 1" 
+                className="h-8 object-contain grayscale hover:grayscale-0 transition-all"
+              />
+              <img 
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=100&h=50&q=80" 
+                alt="Partner 2" 
+                className="h-8 object-contain grayscale hover:grayscale-0 transition-all"
+              />
+              <img 
+                src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=100&h=50&q=80" 
+                alt="Partner 3" 
+                className="h-8 object-contain grayscale hover:grayscale-0 transition-all"
+              />
+              <img 
+                src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=100&h=50&q=80" 
+                alt="Partner 4" 
+                className="h-8 object-contain grayscale hover:grayscale-0 transition-all"
+              />
+            </div>
+          </div>
         </div>
 
         {/* Right Content - Image with circular badge */}
