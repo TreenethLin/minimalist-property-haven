@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PropertyGrid from "@/components/PropertyGrid";
+import AboutMe from "@/components/AboutMe";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import BlogSection from "@/components/BlogSection";
 import ContactForm from "@/components/ContactForm";
@@ -42,6 +43,7 @@ const Index = () => {
       <main className="overflow-hidden">
         <Hero />
         <PropertyGrid />
+        <AboutMe />
         <TestimonialCarousel />
         <BlogSection />
         <ContactForm />
