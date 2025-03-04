@@ -1,18 +1,25 @@
 
 import { useState, useEffect } from "react";
-import { ArrowRight, House, Building2, Building, Landmark, Play, Search } from "lucide-react";
+import { ArrowRight, House, Building2, Building, Landmark, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
   const [propertyType, setPropertyType] = useState('buy'); // 'buy', 'rent', or 'sold'
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Trigger animation after component mounts
     setLoaded(true);
   }, []);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate(`/listings?query=${searchQuery}&type=${propertyType}`);
+  };
 
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-center pt-20">
@@ -56,26 +63,32 @@ const Hero = () => {
           </div>
 
           {/* Search Box */}
-          <div className="bg-white p-4 rounded-lg shadow-sm mt-4 flex flex-col space-y-4">
+          <form onSubmit={handleSearch} className="bg-white p-4 rounded-lg shadow-sm mt-4 flex flex-col space-y-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input 
                 className="pl-10 pr-4 py-6 text-base" 
-                placeholder={`Search Products for ${propertyType === 'buy' ? 'Buy' : propertyType === 'rent' ? 'Rent' : 'Sold'}`}
+                placeholder={`Search Properties for ${propertyType === 'buy' ? 'Buy' : propertyType === 'rent' ? 'Rent' : 'Sold'}`}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <div className="flex justify-between items-center">
               <Button 
                 variant="outline" 
                 className="text-muted-foreground border-muted-foreground/30"
+                type="button"
               >
                 Advanced
               </Button>
-              <Button className="rounded-full w-12 h-12 p-0 flex items-center justify-center">
+              <Button 
+                className="rounded-full w-12 h-12 p-0 flex items-center justify-center" 
+                type="submit"
+              >
                 <Search className="h-5 w-5" />
               </Button>
             </div>
-          </div>
+          </form>
 
           {/* Property Categories */}
           <div className="flex flex-wrap gap-3 mt-6">
@@ -106,7 +119,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* Right Content - Image with circular badge and video button */}
+        {/* Right Content - Image with circular badge */}
         <div className={`relative transition-all duration-1000 ease-out flex items-center justify-center ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           {/* The main property image */}
           <div className="relative">
@@ -135,16 +148,6 @@ const Hero = () => {
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <ArrowRight className="h-6 w-6 text-gray-800" />
-                </div>
-              </div>
-            </div>
-            
-            {/* Watch Video Button */}
-            <div className="absolute bottom-16 right-0 translate-x-16">
-              <div className="flex items-center">
-                <span className="text-sm font-medium mr-4">Watch Video</span>
-                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
-                  <Play className="h-6 w-6 text-primary ml-1" />
                 </div>
               </div>
             </div>

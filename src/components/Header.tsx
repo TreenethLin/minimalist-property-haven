@@ -40,27 +40,27 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-1">
             <div className="relative group px-4 py-2">
               <Link to="/" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
-                Home <span className="ml-1">▾</span>
+                Home
               </Link>
             </div>
             <div className="relative group px-4 py-2">
               <Link to="/listings" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
-                Listing <span className="ml-1">▾</span>
+                Listing
               </Link>
             </div>
             <div className="relative group px-4 py-2">
               <Link to="/property/1" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
-                Property <span className="ml-1">▾</span>
+                Property
               </Link>
             </div>
             <div className="relative group px-4 py-2">
               <Link to="/blog" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
-                Blog <span className="ml-1">▾</span>
+                Blog
               </Link>
             </div>
             <div className="relative group px-4 py-2">
               <span className="flex items-center text-sm font-medium hover:text-primary transition-colors">
-                Pages <span className="ml-1">▾</span>
+                Pages
               </span>
             </div>
           </nav>
