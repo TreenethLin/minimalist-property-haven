@@ -100,11 +100,12 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.5s ease-in-out forwards',
 				'fade-up': 'fade-up 0.5s ease-out forwards',
-				'image-shimmer': 'image-shimmer 2s infinite linear'
+				'image-shimmer': 'image-shimmer 2s infinite linear',
+				'spin-slow': 'spin-slow 15s linear infinite'
 			},
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
-				display: ['Inter', 'system-ui', 'sans-serif']
+				sans: ['Poppins', 'Inter', 'system-ui', 'sans-serif'],
+				display: ['Poppins', 'Inter', 'system-ui', 'sans-serif']
 			}
 		}
 	},

@@ -1,12 +1,13 @@
 
-import { agent } from "@/lib/data";
-import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, House, Building2, Building, Landmark, Play, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
+  const [propertyType, setPropertyType] = useState('buy'); // 'buy', 'rent', or 'sold'
 
   useEffect(() => {
     // Trigger animation after component mounts
@@ -14,72 +15,138 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen flex flex-col justify-center">
+    <section className="relative w-full min-h-screen flex flex-col justify-center pt-20">
+      {/* Background */}
       <div 
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background to-background/95"
+        className="absolute inset-0 -z-10 bg-[#E8EEF1]"
         aria-hidden="true"
       />
-      <div className="container grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 md:px-10">
-        <div className={`space-y-6 max-w-xl transition-opacity duration-700 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium">
-            <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
-            Premium Real Estate
-          </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight">
-            Discover Your <br />
-            <span className="text-primary">Perfect Space</span>
+      
+      <div className="container mx-auto px-6 md:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 py-16">
+        {/* Left Content */}
+        <div className={`space-y-6 max-w-xl transition-opacity duration-700 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'} flex flex-col justify-center`}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-gray-900">
+            Easy Way to Find a <br />
+            <span className="text-gray-900">Perfect Property</span>
           </h1>
           <p className="text-lg text-muted-foreground">
-            Curating exceptional properties that align with your lifestyle and aspirations. Personalized service from start to finish.
+            From as low as $10 per day with limited time offer discounts
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <Button size="lg" className="group" asChild>
-              <Link to="/listings">
-                View Properties
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#contact">Contact Me</a>
-            </Button>
+
+          {/* Property Type Tabs */}
+          <div className="bg-white rounded-lg shadow-sm inline-flex p-1 mt-6 max-w-md">
+            <button
+              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'buy' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => setPropertyType('buy')}
+            >
+              Buy
+            </button>
+            <button
+              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'rent' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => setPropertyType('rent')}
+            >
+              Rent
+            </button>
+            <button
+              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'sold' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => setPropertyType('sold')}
+            >
+              Sold
+            </button>
           </div>
-          <div className="flex items-center gap-4 pt-6">
-            <div className="flex -space-x-2">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="inline-block h-8 w-8 rounded-full ring-2 ring-background overflow-hidden">
-                  <img 
-                    src={`https://source.unsplash.com/random/100x100?face&${i}`} 
-                    alt="Client" 
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="text-sm">
-              <span className="font-semibold">50+ clients</span>
-              <span className="text-muted-foreground"> found their dream properties</span>
-            </div>
-          </div>
-        </div>
-        <div className={`relative transition-all duration-1000 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="relative">
-            <div className="aspect-[3/4] overflow-hidden rounded-md bg-muted">
-              <img
-                src={agent.image}
-                alt={agent.name}
-                className="h-full w-full object-cover transition-transform duration-500 ease-out hover:scale-105"
-                onLoad={() => setLoaded(true)}
+
+          {/* Search Box */}
+          <div className="bg-white p-4 rounded-lg shadow-sm mt-4 flex flex-col space-y-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Input 
+                className="pl-10 pr-4 py-6 text-base" 
+                placeholder={`Search Products for ${propertyType === 'buy' ? 'Buy' : propertyType === 'rent' ? 'Rent' : 'Sold'}`}
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-card shadow-lg rounded-md p-6 max-w-xs">
-              <div className="flex items-center space-x-2 mb-4">
-                <span className="text-sm font-semibold">{agent.name}</span>
-                <span className="h-1 w-1 rounded-full bg-muted-foreground"></span>
-                <span className="text-sm text-muted-foreground">{agent.title}</span>
+            <div className="flex justify-between items-center">
+              <Button 
+                variant="outline" 
+                className="text-muted-foreground border-muted-foreground/30"
+              >
+                Advanced
+              </Button>
+              <Button className="rounded-full w-12 h-12 p-0 flex items-center justify-center">
+                <Search className="h-5 w-5" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Property Categories */}
+          <div className="flex flex-wrap gap-3 mt-6">
+            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+              <div className="bg-primary/10 p-1 rounded-full">
+                <House className="h-4 w-4 text-primary" />
               </div>
-              <p className="text-sm leading-relaxed">
-                "{agent.bio.split('.')[0]}."
-              </p>
+              Houses
+            </Button>
+            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+              <div className="bg-primary/10 p-1 rounded-full">
+                <Building2 className="h-4 w-4 text-primary" />
+              </div>
+              Apartments
+            </Button>
+            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+              <div className="bg-primary/10 p-1 rounded-full">
+                <Building className="h-4 w-4 text-primary" />
+              </div>
+              Office
+            </Button>
+            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+              <div className="bg-primary/10 p-1 rounded-full">
+                <Landmark className="h-4 w-4 text-primary" />
+              </div>
+              Villa
+            </Button>
+          </div>
+        </div>
+
+        {/* Right Content - Image with circular badge and video button */}
+        <div className={`relative transition-all duration-1000 ease-out flex items-center justify-center ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {/* The main property image */}
+          <div className="relative">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+              alt="Beautiful property"
+              className="rounded-lg shadow-xl object-cover h-[500px] w-full"
+              onLoad={() => setLoaded(true)}
+            />
+            
+            {/* The circular "Real Estate Agency" badge */}
+            <div className="absolute -top-4 -right-4 w-32 h-32 rounded-full flex items-center justify-center">
+              <div className="relative h-full w-full">
+                <svg viewBox="0 0 100 100" className="animate-spin-slow">
+                  <path 
+                    id="circle"
+                    d="M 50 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+                    fill="none"
+                    stroke="none"
+                  />
+                  <text>
+                    <textPath href="#circle" className="text-xs tracking-widest uppercase font-medium">
+                      Real Estate • Agency • 
+                    </textPath>
+                  </text>
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <ArrowRight className="h-6 w-6 text-gray-800" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Watch Video Button */}
+            <div className="absolute bottom-16 right-0 translate-x-16">
+              <div className="flex items-center">
+                <span className="text-sm font-medium mr-4">Watch Video</span>
+                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg cursor-pointer hover:scale-110 transition-transform">
+                  <Play className="h-6 w-6 text-primary ml-1" />
+                </div>
+              </div>
             </div>
           </div>
         </div>

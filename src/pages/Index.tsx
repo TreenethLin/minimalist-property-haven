@@ -39,7 +39,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main>
+      <main className="overflow-hidden">
         <Hero />
         <PropertyGrid />
         <TestimonialCarousel />

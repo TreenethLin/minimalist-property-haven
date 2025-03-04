@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Home, Building, Building2, Key, User, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,33 +22,60 @@ const Header = () => {
     <header 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out py-4 px-6 md:px-10",
-        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-transparent"
+        isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-background/80 backdrop-blur-sm"
       )}
     >
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <a href="/" className="font-display font-bold text-2xl">
-            MODERN<span className="font-light">ESTATES</span>
-          </a>
+          <div className="flex items-center">
+            <div className="bg-primary rounded-full p-2 mr-2">
+              <Home className="h-5 w-5 text-white" />
+            </div>
+            <a href="/" className="font-display font-medium text-xl">
+              homez
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#properties" className="text-sm font-medium hover:text-primary/80 transition-colors">
-              Properties
-            </a>
-            <a href="#testimonials" className="text-sm font-medium hover:text-primary/80 transition-colors">
-              Testimonials
-            </a>
-            <a href="#blog" className="text-sm font-medium hover:text-primary/80 transition-colors">
-              Blog
-            </a>
-            <a href="#about" className="text-sm font-medium hover:text-primary/80 transition-colors">
-              About
-            </a>
-            <Button asChild>
-              <a href="#contact">Contact</a>
-            </Button>
+          <nav className="hidden md:flex items-center space-x-1">
+            <div className="relative group px-4 py-2">
+              <Link to="/" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
+                Home <span className="ml-1">▾</span>
+              </Link>
+            </div>
+            <div className="relative group px-4 py-2">
+              <Link to="/listings" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
+                Listing <span className="ml-1">▾</span>
+              </Link>
+            </div>
+            <div className="relative group px-4 py-2">
+              <Link to="/property/1" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
+                Property <span className="ml-1">▾</span>
+              </Link>
+            </div>
+            <div className="relative group px-4 py-2">
+              <Link to="/blog" className="flex items-center text-sm font-medium hover:text-primary transition-colors">
+                Blog <span className="ml-1">▾</span>
+              </Link>
+            </div>
+            <div className="relative group px-4 py-2">
+              <span className="flex items-center text-sm font-medium hover:text-primary transition-colors">
+                Pages <span className="ml-1">▾</span>
+              </span>
+            </div>
           </nav>
+
+          {/* Desktop Action Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Button variant="ghost" size="sm" className="text-sm font-medium">
+              <User className="h-4 w-4 mr-1" /> Login / Register
+            </Button>
+            <Button size="sm" className="text-sm font-medium gap-1 rounded-full" asChild>
+              <Link to="/listings">
+                Add Property <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           <button 
@@ -67,39 +95,16 @@ const Header = () => {
           isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
-        <a 
-          href="#properties" 
-          className="text-xl font-medium"
-          onClick={() => setIsOpen(false)}
-        >
-          Properties
-        </a>
-        <a 
-          href="#testimonials" 
-          className="text-xl font-medium"
-          onClick={() => setIsOpen(false)}
-        >
-          Testimonials
-        </a>
-        <a 
-          href="#blog" 
-          className="text-xl font-medium"
-          onClick={() => setIsOpen(false)}
-        >
-          Blog
-        </a>
-        <a 
-          href="#about" 
-          className="text-xl font-medium"
-          onClick={() => setIsOpen(false)}
-        >
-          About
-        </a>
-        <Button 
-          asChild
-          onClick={() => setIsOpen(false)}
-        >
-          <a href="#contact">Contact</a>
+        <Link to="/" className="text-xl font-medium" onClick={() => setIsOpen(false)}>Home</Link>
+        <Link to="/listings" className="text-xl font-medium" onClick={() => setIsOpen(false)}>Listing</Link>
+        <Link to="/property/1" className="text-xl font-medium" onClick={() => setIsOpen(false)}>Property</Link>
+        <Link to="/blog" className="text-xl font-medium" onClick={() => setIsOpen(false)}>Blog</Link>
+        <span className="text-xl font-medium">Pages</span>
+        <Button variant="outline" onClick={() => setIsOpen(false)}>
+          <User className="h-4 w-4 mr-2" /> Login / Register
+        </Button>
+        <Button onClick={() => setIsOpen(false)} asChild>
+          <Link to="/listings">Add Property</Link>
         </Button>
       </div>
     </header>
