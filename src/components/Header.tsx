@@ -117,74 +117,97 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Redesigned */}
       <div 
         className={cn(
-          "fixed inset-0 bg-background/95 backdrop-blur-md z-40 mobile-menu-container md:hidden transition-all duration-300 ease-in-out",
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          "fixed inset-0 bg-white z-40 md:hidden transition-transform duration-300 ease-in-out",
+          isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
-        <div className="flex flex-col h-full pt-20 px-6 pb-8 overflow-y-auto">
-          <div className="flex-1 flex flex-col space-y-3">
+        <div className="relative h-full flex flex-col p-6">
+          {/* Close button */}
+          <button 
+            className="absolute top-4 right-6 p-2 focus:outline-none"
+            onClick={() => setIsOpen(false)}
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+          
+          {/* Logo */}
+          <div className="flex items-center mt-4 mb-10">
+            <div className="bg-primary rounded-full p-2 mr-2">
+              <Building2 className="h-5 w-5 text-white" />
+            </div>
+            <a href="/" className="font-display font-medium text-xl">
+              WorkSpace
+            </a>
+          </div>
+          
+          {/* Menu items */}
+          <nav className="flex-1 flex flex-col space-y-6">
             <Link 
               to="/" 
-              className="py-3 px-4 rounded-md hover:bg-muted transition-colors text-lg font-medium" 
+              className="text-xl font-medium hover:text-primary transition-colors" 
               onClick={() => setIsOpen(false)}
             >
               Home
             </Link>
             <Link 
               to="/listings" 
-              className="py-3 px-4 rounded-md hover:bg-muted transition-colors text-lg font-medium" 
+              className="text-xl font-medium hover:text-primary transition-colors" 
               onClick={() => setIsOpen(false)}
             >
               Office Spaces
             </Link>
             <Link 
               to="/virtual-offices" 
-              className="py-3 px-4 rounded-md hover:bg-muted transition-colors text-lg font-medium" 
+              className="text-xl font-medium hover:text-primary transition-colors" 
               onClick={() => setIsOpen(false)}
             >
               Virtual Offices
             </Link>
             <Link 
               to="/blog" 
-              className="py-3 px-4 rounded-md hover:bg-muted transition-colors text-lg font-medium" 
+              className="text-xl font-medium hover:text-primary transition-colors" 
               onClick={() => setIsOpen(false)}
             >
               Resources
             </Link>
             
-            <div className="py-2 px-4 text-lg font-medium">Services</div>
-            <div className="pl-4 space-y-2">
-              <Link 
-                to="/office-solutions" 
-                className="py-2 px-4 rounded-md hover:bg-muted transition-colors block text-base" 
-                onClick={() => setIsOpen(false)}
-              >
-                Office Solutions
-              </Link>
-              <Link 
-                to="/meeting-rooms" 
-                className="py-2 px-4 rounded-md hover:bg-muted transition-colors block text-base" 
-                onClick={() => setIsOpen(false)}
-              >
-                Meeting Rooms
-              </Link>
-              <Link 
-                to="/business-services" 
-                className="py-2 px-4 rounded-md hover:bg-muted transition-colors block text-base" 
-                onClick={() => setIsOpen(false)}
-              >
-                Business Services
-              </Link>
+            <div className="py-2">
+              <h3 className="text-xl font-medium mb-4">Services</h3>
+              <div className="pl-2 space-y-4">
+                <Link 
+                  to="/office-solutions" 
+                  className="block text-lg hover:text-primary transition-colors" 
+                  onClick={() => setIsOpen(false)}
+                >
+                  Office Solutions
+                </Link>
+                <Link 
+                  to="/meeting-rooms" 
+                  className="block text-lg hover:text-primary transition-colors" 
+                  onClick={() => setIsOpen(false)}
+                >
+                  Meeting Rooms
+                </Link>
+                <Link 
+                  to="/business-services" 
+                  className="block text-lg hover:text-primary transition-colors" 
+                  onClick={() => setIsOpen(false)}
+                >
+                  Business Services
+                </Link>
+              </div>
             </div>
-          </div>
+          </nav>
           
-          <div className="mt-6">
+          {/* Book a tour button */}
+          <div className="mt-6 pb-10">
             <Link 
               to="/contact" 
-              className="w-full flex justify-center py-3 bg-primary text-primary-foreground rounded-md font-medium hover:bg-primary/90 transition-colors"
+              className="block w-full py-3 bg-primary text-primary-foreground rounded-md text-center font-medium hover:bg-primary/90 transition-colors"
               onClick={() => setIsOpen(false)}
             >
               Book a Tour

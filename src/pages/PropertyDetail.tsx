@@ -1,14 +1,14 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { properties } from "@/lib/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import GoogleMap from "@/components/GoogleMap";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Bed, Bath, Square, MapPin, Calendar, Check, 
-  ArrowLeft, Share2, Heart, Send 
+  ArrowLeft, Share2, Heart, Send, MapIcon
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -30,7 +30,6 @@ const PropertyDetail = () => {
   const property = properties.find(p => p.id === id);
 
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
 
@@ -77,7 +76,6 @@ const PropertyDetail = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call
     setTimeout(() => {
       toast.success("Your inquiry has been sent successfully!");
       setInquiryForm({
@@ -237,6 +235,7 @@ const PropertyDetail = () => {
                 <TabsTrigger value="description">Description</TabsTrigger>
                 <TabsTrigger value="details">Details</TabsTrigger>
                 <TabsTrigger value="features">Features</TabsTrigger>
+                <TabsTrigger value="location">Location</TabsTrigger>
               </TabsList>
               
               <TabsContent value="description" className="space-y-4">
@@ -319,6 +318,17 @@ const PropertyDetail = () => {
                     <span>Security System</span>
                   </div>
                 </div>
+              </TabsContent>
+              
+              <TabsContent value="location" className="space-y-6">
+                <div className="flex items-center mb-4">
+                  <MapIcon className="h-5 w-5 text-primary mr-2" />
+                  <h3 className="text-xl font-semibold">Property Location</h3>
+                </div>
+                <p className="mb-4">
+                  This property is located at {property.address}. The location offers convenient access to nearby amenities, including shopping centers, restaurants, public transportation, and more.
+                </p>
+                <GoogleMap address={property.address} />
               </TabsContent>
             </Tabs>
           </div>
