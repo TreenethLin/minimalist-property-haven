@@ -27,14 +27,14 @@ const AboutMe = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Agent Image */}
-          <div className={`transition-all duration-1000 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="relative rounded-lg overflow-hidden shadow-xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Agent Image - Reduced size and improved responsive layout */}
+          <div className={`lg:col-span-5 transition-all duration-1000 ease-out ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="relative rounded-lg overflow-hidden shadow-xl max-w-md mx-auto lg:ml-0">
               <img 
                 src={agent.image} 
                 alt={agent.name} 
-                className="w-full h-auto object-cover"
+                className="w-full h-auto object-cover aspect-[3/4]"
                 onLoad={() => setLoaded(true)}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
@@ -44,8 +44,8 @@ const AboutMe = () => {
             </div>
           </div>
 
-          {/* Agent Info */}
-          <div className={`space-y-6 transition-opacity duration-700 ease-in-out delay-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+          {/* Agent Info - Improved layout */}
+          <div className={`lg:col-span-7 space-y-6 transition-opacity duration-700 ease-in-out delay-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
             <div>
               <h3 className="text-2xl font-bold mb-4">About {agent.name}</h3>
               <p className="text-muted-foreground">{agent.bio}</p>
@@ -54,11 +54,11 @@ const AboutMe = () => {
             {/* Credentials */}
             <div>
               <h4 className="text-lg font-semibold mb-3">Credentials</h4>
-              <div className="space-y-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 {agent.credentials.map((credential, index) => (
                   <div key={index} className="flex items-center gap-2">
-                    <Award className="h-5 w-5 text-primary" />
-                    <span>{credential}</span>
+                    <Award className="h-5 w-5 text-primary flex-shrink-0" />
+                    <span className="text-sm">{credential}</span>
                   </div>
                 ))}
               </div>
@@ -68,7 +68,7 @@ const AboutMe = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Card className="bg-white hover:shadow-md transition-all duration-300">
                 <CardContent className="flex items-center gap-3 p-4">
-                  <div className="bg-primary/10 p-2 rounded-full">
+                  <div className="bg-primary/10 p-2 rounded-full flex-shrink-0">
                     <Phone className="h-5 w-5 text-primary" />
                   </div>
                   <div>
@@ -80,7 +80,7 @@ const AboutMe = () => {
 
               <Card className="bg-white hover:shadow-md transition-all duration-300">
                 <CardContent className="flex items-center gap-3 p-4">
-                  <div className="bg-primary/10 p-2 rounded-full">
+                  <div className="bg-primary/10 p-2 rounded-full flex-shrink-0">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div>

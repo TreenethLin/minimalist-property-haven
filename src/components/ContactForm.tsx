@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -48,35 +49,42 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 md:px-10">
+    <section id="contact" className="py-24 px-6 md:px-10 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium mb-4">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium mb-4">
             <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
-            Get In Touch
+            Contact Me
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Connect With Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Find Your Dream Home?</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Whether you're looking to buy, sell, or just have questions about real estate, I'm here to help.
+            Reach out today and let's discuss how I can help you achieve your real estate goals.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">
           <div className="lg:col-span-2 space-y-8">
-            <div className="bg-card p-6 rounded-lg border border-border shadow-sm">
+            <div className="bg-white p-6 rounded-lg border border-border shadow-sm">
               <div className="flex items-center mb-6">
-                <img src={agent.image} alt={agent.name} className="h-16 w-16 rounded-full object-cover mr-4" />
+                <div className="bg-primary/10 p-3 rounded-full mr-4">
+                  <MapPin className="h-6 w-6 text-primary" />
+                </div>
                 <div>
-                  <h3 className="font-bold text-lg">{agent.name}</h3>
-                  <p className="text-muted-foreground">{agent.title}</p>
+                  <h3 className="font-bold text-lg">Office Location</h3>
+                  <p className="text-muted-foreground">
+                    1234 Modern Avenue<br />
+                    Design District, NY 10001
+                  </p>
                 </div>
               </div>
 
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <Phone className="h-5 w-5 text-primary mr-4 mt-0.5" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4 flex-shrink-0">
+                    <Phone className="h-6 w-6 text-primary" />
+                  </div>
                   <div>
-                    <p className="font-medium">Phone</p>
+                    <h3 className="font-bold">Call Directly</h3>
                     <a href={`tel:${agent.phone}`} className="text-muted-foreground hover:text-primary transition-colors">
                       {agent.phone}
                     </a>
@@ -84,64 +92,43 @@ const ContactForm = () => {
                 </div>
 
                 <div className="flex items-start">
-                  <Mail className="h-5 w-5 text-primary mr-4 mt-0.5" />
+                  <div className="bg-primary/10 p-3 rounded-full mr-4 flex-shrink-0">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
                   <div>
-                    <p className="font-medium">Email</p>
+                    <h3 className="font-bold">Email Me</h3>
                     <a href={`mailto:${agent.email}`} className="text-muted-foreground hover:text-primary transition-colors">
                       {agent.email}
                     </a>
                   </div>
                 </div>
-
-                <div className="flex items-start">
-                  <MapPin className="h-5 w-5 text-primary mr-4 mt-0.5" />
-                  <div>
-                    <p className="font-medium">Office</p>
-                    <p className="text-muted-foreground">
-                      1234 Modern Avenue<br />
-                      Design District, NY 10001
-                    </p>
-                  </div>
-                </div>
               </div>
 
               <div className="mt-8 pt-6 border-t border-border">
-                <p className="font-medium mb-4">Connect with me on social media</p>
+                <h3 className="font-bold mb-4">Social Channels</h3>
                 <div className="flex flex-wrap gap-3">
-                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
+                  <Button variant="outline" size="icon" asChild className="rounded-full h-11 w-11 bg-[#1877F2]/10 border-[#1877F2]/20 hover:bg-[#1877F2]/20">
                     <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                       <Facebook className="h-5 w-5 text-[#1877F2]" />
                     </a>
                   </Button>
-                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
+                  <Button variant="outline" size="icon" asChild className="rounded-full h-11 w-11 bg-[#E4405F]/10 border-[#E4405F]/20 hover:bg-[#E4405F]/20">
                     <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                       <Instagram className="h-5 w-5 text-[#E4405F]" />
                     </a>
                   </Button>
-                  <Button variant="outline" size="icon" asChild className="rounded-full h-10 w-10">
+                  <Button variant="outline" size="icon" asChild className="rounded-full h-11 w-11 bg-[#00B900]/10 border-[#00B900]/20 hover:bg-[#00B900]/20">
                     <a href="https://line.me" target="_blank" rel="noopener noreferrer" aria-label="Line">
                       <MessageCircle className="h-5 w-5 text-[#00B900]" />
                     </a>
                   </Button>
                 </div>
               </div>
-
-              <div className="mt-8 pt-6 border-t border-border">
-                <p className="font-medium mb-3">Credentials</p>
-                <div className="space-y-2">
-                  {agent.credentials.map((credential, index) => (
-                    <div key={index} className="flex items-center">
-                      <CheckCircle className="h-4 w-4 text-primary mr-2" />
-                      <span className="text-sm">{credential}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
 
           <div className="lg:col-span-3">
-            <div className="bg-card p-8 rounded-lg border border-border shadow-sm">
+            <div className="bg-white p-8 rounded-lg border border-border shadow-sm">
               <h3 className="text-xl font-semibold mb-6">Send Me a Message</h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
