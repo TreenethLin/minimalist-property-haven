@@ -21,9 +21,11 @@ const PropertyGrid = () => {
     const filtered = 
       activeTab === "all" 
         ? allProperties 
-        : activeTab === "for-sale" 
-          ? allProperties.filter(p => p.type === "For Sale") 
-          : allProperties.filter(p => p.type === "For Rent");
+        : activeTab === "for-rent" 
+          ? allProperties.filter(p => p.type === "For Rent") 
+          : activeTab === "co-working"
+            ? allProperties.filter(p => p.type === "Co-working")
+            : allProperties.filter(p => p.type === "For Sale");
     
     setVisibleProperties(filtered.slice(0, 3));
   }, [activeTab]);
@@ -32,9 +34,11 @@ const PropertyGrid = () => {
     const filtered = 
       activeTab === "all" 
         ? allProperties 
-        : activeTab === "for-sale" 
-          ? allProperties.filter(p => p.type === "For Sale") 
-          : allProperties.filter(p => p.type === "For Rent");
+        : activeTab === "for-rent" 
+          ? allProperties.filter(p => p.type === "For Rent") 
+          : activeTab === "co-working"
+            ? allProperties.filter(p => p.type === "Co-working")
+            : allProperties.filter(p => p.type === "For Sale");
     
     setVisibleProperties(filtered.slice(0, visibleProperties.length + 3));
   };
@@ -43,9 +47,11 @@ const PropertyGrid = () => {
     const filtered = 
       activeTab === "all" 
         ? allProperties 
-        : activeTab === "for-sale" 
-          ? allProperties.filter(p => p.type === "For Sale") 
-          : allProperties.filter(p => p.type === "For Rent");
+        : activeTab === "for-rent" 
+          ? allProperties.filter(p => p.type === "For Rent") 
+          : activeTab === "co-working"
+            ? allProperties.filter(p => p.type === "Co-working")
+            : allProperties.filter(p => p.type === "For Sale");
     
     return visibleProperties.length < filtered.length;
   };
@@ -56,20 +62,21 @@ const PropertyGrid = () => {
         <div className={`text-center mb-12 transition-opacity duration-700 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium mb-4">
             <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
-            Featured Properties
+            Featured Workspaces
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Exceptional Spaces</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Premium Office Solutions</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Curated properties that blend distinctive design with practical living, each one carefully selected to meet discerning standards.
+            Curated workspaces that blend distinctive design with practical business needs, each one carefully selected to meet professional standards.
           </p>
         </div>
 
         <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-12">
           <div className="flex justify-center">
             <TabsList>
-              <TabsTrigger value="all">All Properties</TabsTrigger>
-              <TabsTrigger value="for-sale">For Sale</TabsTrigger>
-              <TabsTrigger value="for-rent">For Rent</TabsTrigger>
+              <TabsTrigger value="all">All Spaces</TabsTrigger>
+              <TabsTrigger value="for-rent">Private Offices</TabsTrigger>
+              <TabsTrigger value="co-working">Co-working</TabsTrigger>
+              <TabsTrigger value="for-sale">Virtual Offices</TabsTrigger>
             </TabsList>
           </div>
         </Tabs>
@@ -99,7 +106,7 @@ const PropertyGrid = () => {
           )}
           
           <Button asChild className="min-w-[150px]">
-            <Link to="/listings">View All Properties</Link>
+            <Link to="/listings">View All Workspaces</Link>
           </Button>
         </div>
       </div>

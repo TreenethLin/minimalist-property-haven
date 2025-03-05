@@ -1,7 +1,7 @@
 
 import { Property } from "@/lib/data";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Bed, Bath, Square, MapPin } from "lucide-react";
+import { Users, MapPin, Square } from "lucide-react";
 import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
@@ -14,9 +14,9 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   
   const formatPrice = (price: number) => {
-    return property.type === "For Rent" 
-      ? `$${price.toLocaleString()}/mo`
-      : `$${price.toLocaleString()}`;
+    return property.type === "Co-working" 
+      ? `$${price.toLocaleString()}/mo per person`
+      : `$${price.toLocaleString()}/mo`;
   };
 
   const getStatusColor = (status: string) => {
@@ -25,7 +25,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         return "bg-green-500";
       case "Pending":
         return "bg-amber-500";
-      case "Sold":
+      case "Leased":
         return "bg-red-500";
       default:
         return "bg-slate-500";
@@ -65,16 +65,17 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         </p>
         <div className="grid grid-cols-3 gap-2 text-sm">
           <div className="flex items-center">
-            <Bed className="h-4 w-4 mr-2 text-muted-foreground" />
-            <span>{property.bedrooms} Beds</span>
-          </div>
-          <div className="flex items-center">
-            <Bath className="h-4 w-4 mr-2 text-muted-foreground" />
-            <span>{property.bathrooms} Baths</span>
-          </div>
-          <div className="flex items-center">
             <Square className="h-4 w-4 mr-2 text-muted-foreground" />
-            <span>{property.sqft.toLocaleString()} Sq Ft</span>
+            <span>{property.size.toLocaleString()} sq ft</span>
+          </div>
+          <div className="flex items-center">
+            <Users className="h-4 w-4 mr-2 text-muted-foreground" />
+            <span>Fits {property.capacity}</span>
+          </div>
+          <div className="flex items-center">
+            <Badge variant="outline" className="font-normal">
+              {property.amenities[0]}
+            </Badge>
           </div>
         </div>
       </CardContent>

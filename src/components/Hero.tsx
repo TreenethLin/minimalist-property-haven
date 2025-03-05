@@ -1,13 +1,13 @@
 
 import { useState, useEffect } from "react";
-import { ArrowRight, House, Building2, Building, Landmark, Search } from "lucide-react";
+import { ArrowRight, Building, Building2, Briefcase, Laptop, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
-  const [propertyType, setPropertyType] = useState('buy'); // 'buy', 'rent', or 'sold'
+  const [propertyType, setPropertyType] = useState('office'); // 'office', 'coworking', or 'virtual'
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
@@ -33,32 +33,32 @@ const Hero = () => {
         {/* Left Content */}
         <div className={`space-y-6 max-w-xl transition-opacity duration-700 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'} flex flex-col justify-center`}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-gray-900">
-            Easy Way to Find a <br />
-            <span className="text-gray-900">Perfect Property</span>
+            Find Your Perfect <br />
+            <span className="text-gray-900">Workspace Solution</span>
           </h1>
           <p className="text-lg text-muted-foreground">
-            From as low as $10 per day with limited time offer discounts
+            From private offices to co-working spaces and virtual solutions, find the perfect workspace for your business needs.
           </p>
 
           {/* Property Type Tabs */}
           <div className="bg-white rounded-lg shadow-sm inline-flex p-1 mt-6 max-w-md">
             <button
-              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'buy' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
-              onClick={() => setPropertyType('buy')}
+              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'office' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => setPropertyType('office')}
             >
-              Buy
+              Office
             </button>
             <button
-              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'rent' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
-              onClick={() => setPropertyType('rent')}
+              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'coworking' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => setPropertyType('coworking')}
             >
-              Rent
+              Co-working
             </button>
             <button
-              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'sold' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
-              onClick={() => setPropertyType('sold')}
+              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'virtual' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
+              onClick={() => setPropertyType('virtual')}
             >
-              Sold
+              Virtual
             </button>
           </div>
 
@@ -68,7 +68,7 @@ const Hero = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input 
                 className="pl-10 pr-4 py-6 text-base" 
-                placeholder={`Search Properties for ${propertyType === 'buy' ? 'Buy' : propertyType === 'rent' ? 'Rent' : 'Sold'}`}
+                placeholder={`Search ${propertyType === 'office' ? 'Office Spaces' : propertyType === 'coworking' ? 'Co-working Spaces' : 'Virtual Office Solutions'}`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -79,27 +79,27 @@ const Hero = () => {
           <div className="flex flex-wrap gap-3 mt-6">
             <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
               <div className="bg-primary/10 p-1 rounded-full">
-                <House className="h-4 w-4 text-primary" />
+                <Building className="h-4 w-4 text-primary" />
               </div>
-              Houses
+              Executive Suites
             </Button>
             <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
               <div className="bg-primary/10 p-1 rounded-full">
                 <Building2 className="h-4 w-4 text-primary" />
               </div>
-              Apartments
+              Open Workspaces
             </Button>
             <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
               <div className="bg-primary/10 p-1 rounded-full">
-                <Building className="h-4 w-4 text-primary" />
+                <Briefcase className="h-4 w-4 text-primary" />
               </div>
-              Office
+              Meeting Rooms
             </Button>
             <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
               <div className="bg-primary/10 p-1 rounded-full">
-                <Landmark className="h-4 w-4 text-primary" />
+                <Laptop className="h-4 w-4 text-primary" />
               </div>
-              Villa
+              Virtual Offices
             </Button>
           </div>
         </div>
@@ -109,13 +109,13 @@ const Hero = () => {
           {/* The main property image */}
           <div className="relative">
             <img
-              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-              alt="Beautiful property"
+              src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80"
+              alt="Modern office space"
               className="rounded-lg shadow-xl object-cover h-[500px] w-full"
               onLoad={() => setLoaded(true)}
             />
             
-            {/* The circular "Real Estate Agency" badge */}
+            {/* The circular "Workspace Solutions" badge */}
             <div className="absolute -top-4 -right-4 w-32 h-32 rounded-full flex items-center justify-center">
               <div className="relative h-full w-full">
                 <svg viewBox="0 0 100 100" className="animate-spin-slow">
@@ -127,7 +127,7 @@ const Hero = () => {
                   />
                   <text>
                     <textPath href="#circle" className="text-xs tracking-widest uppercase font-medium">
-                      Real Estate • Agency • 
+                      Workspace • Solutions • 
                     </textPath>
                   </text>
                 </svg>

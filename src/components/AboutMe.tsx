@@ -21,9 +21,9 @@ const AboutMe = () => {
             <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
             About Me
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Real Estate Partner</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Your Workspace Solutions Partner</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Dedicated to finding the perfect property match for every client's unique needs.
+            Dedicated to finding the perfect office space solution for every business's unique requirements and budget.
           </p>
         </div>
 
