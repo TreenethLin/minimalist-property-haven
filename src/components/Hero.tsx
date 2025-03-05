@@ -21,6 +21,11 @@ const Hero = () => {
     navigate(`/listings?query=${searchQuery}&type=${propertyType}`);
   };
 
+  // Handler for category chip clicks
+  const handleCategoryClick = (category: string) => {
+    navigate(`/listings?category=${category}`);
+  };
+
   return (
     <section className="relative w-full min-h-screen flex flex-col justify-center pt-20">
       {/* Background */}
@@ -75,27 +80,43 @@ const Hero = () => {
             </div>
           </form>
 
-          {/* Property Categories */}
+          {/* Property Categories - Now clickable */}
           <div className="flex flex-wrap gap-3 mt-6">
-            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              className="rounded-full bg-white shadow-sm flex items-center gap-2 hover:bg-primary/10"
+              onClick={() => handleCategoryClick('executive')}
+            >
               <div className="bg-primary/10 p-1 rounded-full">
                 <Building className="h-4 w-4 text-primary" />
               </div>
               Executive Suites
             </Button>
-            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              className="rounded-full bg-white shadow-sm flex items-center gap-2 hover:bg-primary/10"
+              onClick={() => handleCategoryClick('open')}
+            >
               <div className="bg-primary/10 p-1 rounded-full">
                 <Building2 className="h-4 w-4 text-primary" />
               </div>
               Open Workspaces
             </Button>
-            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              className="rounded-full bg-white shadow-sm flex items-center gap-2 hover:bg-primary/10"
+              onClick={() => handleCategoryClick('meeting')}
+            >
               <div className="bg-primary/10 p-1 rounded-full">
                 <Briefcase className="h-4 w-4 text-primary" />
               </div>
               Meeting Rooms
             </Button>
-            <Button variant="outline" className="rounded-full bg-white shadow-sm flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              className="rounded-full bg-white shadow-sm flex items-center gap-2 hover:bg-primary/10"
+              onClick={() => handleCategoryClick('virtual')}
+            >
               <div className="bg-primary/10 p-1 rounded-full">
                 <Laptop className="h-4 w-4 text-primary" />
               </div>
