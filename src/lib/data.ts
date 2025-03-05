@@ -6,7 +6,10 @@ export interface Property {
   address: string;
   price: number;
   size: number;
+  sqft: number;
   capacity: number;
+  bedrooms: number;
+  bathrooms: number;
   amenities: string[];
   description: string;
   features: string[];
@@ -75,7 +78,10 @@ export const properties: Property[] = [
     address: "123 Business Avenue, Financial District",
     price: 2500,
     size: 500,
+    sqft: 500,
     capacity: 10,
+    bedrooms: 0,
+    bathrooms: 2,
     amenities: ["High-speed Internet", "Conference Room", "Reception Services", "Kitchen"],
     description: "A prestigious corner office suite with panoramic city views, featuring modern design and premium finishes. Fully furnished with ergonomic workstations and access to state-of-the-art meeting facilities.",
     features: ["24/7 Access", "Smart Office Technology", "Private Executive Suite", "Dedicated Receptionist", "Covered Parking"],
@@ -89,7 +95,10 @@ export const properties: Property[] = [
     address: "456 Innovation Lane, Tech District",
     price: 350,
     size: 2000,
+    sqft: 2000,
     capacity: 50,
+    bedrooms: 0,
+    bathrooms: 4,
     amenities: ["Fiber Internet", "Phone Booths", "Free Coffee", "Printing Services"],
     description: "A vibrant co-working space designed for productivity and collaboration. Features hot desks, private booths, and breakout areas for teams of all sizes. Monthly membership includes all utilities and amenities.",
     features: ["Hot Desks", "Private Phone Booths", "Community Events", "Networking Opportunities", "Mail Handling"],
@@ -103,7 +112,10 @@ export const properties: Property[] = [
     address: "789 Design Way, Arts District",
     price: 1800,
     size: 800,
+    sqft: 800,
     capacity: 15,
+    bedrooms: 0,
+    bathrooms: 2,
     amenities: ["Natural Lighting", "Exposed Brick", "Rooftop Access", "Bike Storage"],
     description: "Open concept studio space perfect for creative agencies and design teams. Features industrial elements with modern comforts including soundproofed meeting spaces and a collaborative layout.",
     features: ["Polished Concrete Floors", "High Ceilings", "Meeting Pods", "Dedicated Kitchen", "Loading Dock"],
@@ -117,7 +129,10 @@ export const properties: Property[] = [
     address: "101 Metropolitan Tower, Downtown",
     price: 150,
     size: 0,
+    sqft: 0,
     capacity: 1,
+    bedrooms: 0,
+    bathrooms: 0,
     amenities: ["Mail Handling", "Call Answering", "Business Address", "Meeting Room Credits"],
     description: "Professional virtual office solution providing a prestigious business address, mail handling, and call answering services. Includes meeting room credits and day pass access to physical workspace.",
     features: ["Professional Address", "Mail Forwarding", "Reception Services", "Day Pass Included", "Meeting Credits"],
@@ -131,7 +146,10 @@ export const properties: Property[] = [
     address: "202 Factory Road, Warehouse District",
     price: 2200,
     size: 1200,
+    sqft: 1200,
     capacity: 20,
+    bedrooms: 1,
+    bathrooms: 2,
     amenities: ["Freight Elevator", "Loading Dock", "High Ceilings", "Outdoor Space"],
     description: "Converted industrial loft with abundant natural light, exposed ductwork, and original brick walls. Flexible open floor plan ideal for creative businesses looking for unique character.",
     features: ["Polished Concrete", "Exposed Ductwork", "Freight Access", "Private Entrance", "Outdoor Terrace"],
@@ -145,7 +163,10 @@ export const properties: Property[] = [
     address: "303 Executive Plaza, Business Park",
     price: 12000,
     size: 5000,
+    sqft: 5000,
     capacity: 100,
+    bedrooms: 2,
+    bathrooms: 6,
     amenities: ["Dedicated Floor", "Executive Offices", "Conference Center", "Security"],
     description: "Full-floor office space suitable for corporate headquarters. Features a mix of executive offices, open work areas, multiple conference rooms, and staff amenities. Building includes secure access and parking.",
     features: ["Private Floor", "Executive Suites", "Board Room", "Staff Cafeteria", "Secure Access"],
