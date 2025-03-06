@@ -91,7 +91,7 @@ const Header = () => {
 
       {/* Mobile Menu - Solid White Background */}
       {isOpen && (
-        <div className="fixed inset-0 bg-white z-40 md:hidden">
+        <div className="fixed inset-0 bg-white z-40 md:hidden mobile-menu-container">
           <div className="relative h-full flex flex-col p-6">
             {/* Close button */}
             <button 
@@ -107,9 +107,9 @@ const Header = () => {
               <div className="bg-primary rounded-full p-2 mr-2">
                 <Building2 className="h-5 w-5 text-white" />
               </div>
-              <a href="/" className="font-display font-medium text-xl">
+              <Link to="/" className="font-display font-medium text-xl" onClick={() => setIsOpen(false)}>
                 WorkSpace
-              </a>
+              </Link>
             </div>
             
             {/* Menu items */}
@@ -138,7 +138,7 @@ const Header = () => {
             </nav>
             
             {/* Get a Quote button */}
-            <div className="mt-6 pb-10">
+            <div className="mt-6">
               <Link 
                 to="/contact" 
                 className="block w-full py-3 bg-primary text-primary-foreground rounded-md text-center font-medium hover:bg-primary/90 transition-colors"
@@ -146,6 +146,22 @@ const Header = () => {
               >
                 Get a Quote
               </Link>
+            </div>
+            
+            {/* Partner logo in mobile menu */}
+            <div className="border-t border-border mt-8 pt-8 flex flex-col items-center">
+              <p className="text-sm text-muted-foreground mb-4">Official Partner With</p>
+              <a 
+                href="https://www.justcoglobal.com/" 
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img 
+                  src="https://careher.net/wp-content/uploads/2020/02/JustCo-Logo-Square_Original-on-Transparent-Background.png" 
+                  alt="JustCo - Official Partner" 
+                  className="h-14"
+                />
+              </a>
             </div>
           </div>
         </div>

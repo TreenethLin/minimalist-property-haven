@@ -1,4 +1,3 @@
-
 import { agent } from "@/lib/data";
 import { Instagram, Linkedin, Twitter, Mail, Phone, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +8,30 @@ const Footer = () => {
 
   return (
     <footer className="bg-muted/50 border-t border-border">
+      <div className="border-b border-border">
+        <div className="container mx-auto py-6 px-6 md:px-10">
+          <div className="flex flex-col md:flex-row items-center justify-center md:justify-between">
+            <div className="mb-4 md:mb-0">
+              <h3 className="font-semibold text-lg">Official Partner With</h3>
+            </div>
+            <div className="flex items-center">
+              <a 
+                href="https://www.justcoglobal.com/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-transform hover:scale-105"
+              >
+                <img 
+                  src="https://careher.net/wp-content/uploads/2020/02/JustCo-Logo-Square_Original-on-Transparent-Background.png" 
+                  alt="JustCo - Official Partner" 
+                  className="h-16 md:h-20"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto py-16 px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-4">
