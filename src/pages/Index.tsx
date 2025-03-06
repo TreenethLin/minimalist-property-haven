@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PropertyGrid from "@/components/PropertyGrid";
@@ -47,9 +46,9 @@ const Index = () => {
         <Hero />
         <CityExplorer />
         <FeaturedOfficeTypes />
-        <WorkspaceServices />
         <PropertyGrid />
         <AboutMe />
+        <WorkspaceServices />
         <TestimonialCarousel />
         <BlogSection />
         <ContactForm />
