@@ -91,7 +91,7 @@ const Header = () => {
 
       {/* Mobile Menu - Solid White Background */}
       {isOpen && (
-        <div className="fixed inset-0 bg-background md:hidden mobile-menu-container" 
+        <div className="fixed top-0 left-0 w-screen h-screen bg-background md:hidden mobile-menu-container" 
              style={{ zIndex: 100 }}>
           <div className="relative h-full flex flex-col p-6">
             {/* Close button */}

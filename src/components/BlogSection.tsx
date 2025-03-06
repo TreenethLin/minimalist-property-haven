@@ -4,15 +4,23 @@ import { Link } from "react-router-dom";
 import { blogPosts } from "@/lib/data";
 import BlogPost from "./BlogPost";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 
 const BlogSection = () => {
   const [loaded, setLoaded] = useState(false);
+  const [visiblePosts, setVisiblePosts] = useState(3);
 
   useEffect(() => {
     // Trigger animation after component mounts
     setLoaded(true);
   }, []);
+
+  const loadMore = () => {
+    setVisiblePosts(prev => Math.min(prev + 3, blogPosts.length));
+  };
+
+  const hasMore = () => {
+    return visiblePosts < blogPosts.length;
+  };
 
   return (
     <section id="blog" className="py-24 px-6 md:px-10 bg-muted/30">
@@ -31,7 +39,7 @@ const BlogSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.slice(0, 3).map((post, index) => (
+          {blogPosts.slice(0, visiblePosts).map((post, index) => (
             <Link 
               key={post.id}
               to={`/blog/${post.id}`}
@@ -43,7 +51,16 @@ const BlogSection = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-12 gap-4">
+          {hasMore() && (
+            <Button 
+              variant="outline" 
+              onClick={loadMore}
+              className="min-w-[150px]"
+            >
+              Load More
+            </Button>
+          )}
           <Button asChild className="min-w-[150px]">
             <Link to="/blog">View All Articles</Link>
           </Button>

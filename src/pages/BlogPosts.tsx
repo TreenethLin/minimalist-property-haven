@@ -35,22 +35,26 @@ const BlogPosts = () => {
   });
 
   // Update URL params when filters change
-  useEffect(() => {
+  const updateSearchParams = () => {
     const params = new URLSearchParams();
     
     if (searchTerm) params.set("search", searchTerm);
     if (selectedCategory) params.set("category", selectedCategory);
     
     setSearchParams(params);
-  }, [searchTerm, selectedCategory, setSearchParams]);
+    // Close the filters panel after applying filters
+    setShowFilters(false);
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+    updateSearchParams();
   };
 
   const resetFilters = () => {
     setSearchTerm("");
     setSelectedCategory(null);
+    setSearchParams({});
   };
 
   return (
@@ -112,7 +116,7 @@ const BlogPosts = () => {
                     </Button>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                  <div className="flex flex-wrap gap-3">
                     <Button
                       variant={selectedCategory === null ? "default" : "outline"}
                       className="justify-start"
@@ -137,6 +141,10 @@ const BlogPosts = () => {
                         </Badge>
                       </Button>
                     ))}
+                  </div>
+                  
+                  <div className="mt-6 flex justify-end">
+                    <Button onClick={updateSearchParams}>Apply Filters</Button>
                   </div>
                 </div>
               )}

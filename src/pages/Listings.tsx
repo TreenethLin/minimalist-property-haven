@@ -129,6 +129,8 @@ const Listings = () => {
     if (filters.features.length > 0) params.set("features", filters.features.join(","));
     
     setSearchParams(params);
+    // Close the filters panel after applying filters
+    setShowFilters(false);
   };
 
   const toggleFeature = (feature: string) => {

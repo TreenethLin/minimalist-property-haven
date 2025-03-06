@@ -52,7 +52,7 @@ const ContactForm = () => {
     <section id="contact" className="py-24 px-6 md:px-10 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-sm font-medium mb-4">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium mb-4">
             <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
             Contact Me
           </div>
@@ -97,7 +97,7 @@ const ContactForm = () => {
                   </div>
                   <div>
                     <h3 className="font-bold">Email Me</h3>
-                    <a href={`mailto:${agent.email}`} className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href={`mailto:${agent.email}`} className="text-muted-foreground hover:text-primary transition-colors break-all">
                       {agent.email}
                     </a>
                   </div>

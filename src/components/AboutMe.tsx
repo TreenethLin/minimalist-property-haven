@@ -65,8 +65,8 @@ const AboutMe = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="grid grid-cols-12 gap-4">
-              <Card className="col-span-5 bg-white hover:shadow-md transition-all duration-300">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+              <Card className="col-span-1 md:col-span-5 bg-white hover:shadow-md transition-all duration-300">
                 <CardContent className="flex items-center gap-3 p-4">
                   <div className="bg-primary/10 p-2 rounded-full flex-shrink-0">
                     <Phone className="h-5 w-5 text-primary" />
@@ -78,14 +78,14 @@ const AboutMe = () => {
                 </CardContent>
               </Card>
 
-              <Card className="col-span-7 bg-white hover:shadow-md transition-all duration-300">
+              <Card className="col-span-1 md:col-span-7 bg-white hover:shadow-md transition-all duration-300">
                 <CardContent className="flex items-center gap-3 p-4">
                   <div className="bg-primary/10 p-2 rounded-full flex-shrink-0">
                     <Mail className="h-5 w-5 text-primary" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-medium truncate">{agent.email}</p>
+                    <p className="font-medium break-all">{agent.email}</p>
                   </div>
                 </CardContent>
               </Card>

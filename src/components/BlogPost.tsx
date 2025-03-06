@@ -54,7 +54,11 @@ const BlogPost = ({ post }: BlogPostProps) => {
         </p>
       </CardContent>
       <CardFooter className="p-6 pt-0">
-        <Link to={`/blog/${post.id}`} className="text-sm font-medium underline-offset-4 hover:underline text-primary">
+        <Link 
+          to={`/blog/${post.id}`} 
+          className="w-full inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
+          onClick={(e) => e.stopPropagation()}
+        >
           Read More
         </Link>
       </CardFooter>

@@ -242,21 +242,18 @@ const PropertyDetail = () => {
         {/* Property Details */}
         <section className="py-12 px-6">
           <div className="container mx-auto">
-            <Tabs defaultValue="description" className="w-full">
-              <TabsList className="mb-8">
-                <TabsTrigger value="description">Description</TabsTrigger>
-                <TabsTrigger value="details">Details</TabsTrigger>
-                <TabsTrigger value="amenities">Amenities</TabsTrigger>
-                <TabsTrigger value="location">Location</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="description" className="space-y-4">
+            <div className="space-y-12">
+              {/* Description Section */}
+              <div className="space-y-4">
+                <h2 className="text-2xl font-bold">Description</h2>
                 <p className="text-lg">{property.description}</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus non mollis lacus. Sed et quam nec dui consectetur venenatis vel ut massa. Aliquam erat volutpat. Suspendisse potenti. Phasellus interdum risus vitae hendrerit bibendum. Proin rhoncus non nisi vel lobortis. Donec venenatis, nisl quis sollicitudin maximus, dolor erat euismod mauris, sed pretium neque orci at eros.</p>
                 <p>Integer vitae dignissim metus, nec sollicitudin odio. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras dignissim turpis quis finibus pulvinar. Aenean maximus condimentum lacus, non sagittis enim tempus in. Ut elementum odio nibh, non convallis magna auctor id.</p>
-              </TabsContent>
+              </div>
               
-              <TabsContent value="details" className="space-y-6">
+              {/* Details Section */}
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold">Property Details</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                   <div className="flex justify-between py-2 border-b">
                     <span className="text-muted-foreground">Property ID</span>
@@ -309,9 +306,11 @@ const PropertyDetail = () => {
                     <span className="font-medium">{formatDate(new Date())}</span>
                   </div>
                 </div>
-              </TabsContent>
+              </div>
               
-              <TabsContent value="amenities" className="space-y-6">
+              {/* Amenities Section */}
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold">Amenities & Features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {property.features.map((feature, index) => (
                     <div key={index} className="flex items-start">
@@ -340,19 +339,21 @@ const PropertyDetail = () => {
                     <span>Security System</span>
                   </div>
                 </div>
-              </TabsContent>
+              </div>
               
-              <TabsContent value="location" className="space-y-6">
+              {/* Location Section */}
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold">Location</h2>
                 <div className="flex items-center mb-4">
                   <MapIcon className="h-5 w-5 text-primary mr-2" />
-                  <h3 className="text-xl font-semibold">Property Location</h3>
+                  <h3 className="text-xl font-semibold">{property.address}</h3>
                 </div>
                 <p className="mb-4">
                   This property is located at {property.address}. The location offers convenient access to nearby amenities, including shopping centers, restaurants, public transportation, and more.
                 </p>
                 <GoogleMap address={property.address} />
-              </TabsContent>
-            </Tabs>
+              </div>
+            </div>
           </div>
         </section>
         
@@ -444,9 +445,12 @@ const PropertyDetail = () => {
         </section>
         
         {/* Similar Properties */}
-        <section className="py-12 px-6">
-          <div className="container mx-auto">
-            <h2 className="text-2xl font-bold mb-8">Similar Properties</h2>
+        {properties
+          .filter(p => p.id !== property.id && p.type === property.type)
+          .length > 0 && (
+          <section className="py-12 px-6">
+            <div className="container mx-auto">
+              <h2 className="text-2xl font-bold mb-8">Similar Properties</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {properties
                 .filter(p => p.id !== property.id && p.type === property.type)
@@ -483,7 +487,10 @@ const PropertyDetail = () => {
             </div>
           </div>
         </section>
+        )}
       </main>
+    
+
       <Footer />
     </div>
   );

@@ -110,3 +110,11 @@ html {
 .animate-spin-slow {
   animation: spin-slow 15s linear infinite;
 }
+
+/* Container class for consistent padding throughout the project */
+.container {
+  padding: 1.25rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
