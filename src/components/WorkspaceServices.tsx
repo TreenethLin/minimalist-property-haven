@@ -46,13 +46,13 @@ const WorkspaceServices = () => {
   return (
     <section className="py-20 px-6 md:px-10 bg-background">
       <div className="container mx-auto">
-        <div className={`text-center mb-12 transition-opacity duration-700 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`mb-12 transition-opacity duration-700 ease-in-out max-w-2xl ${loaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium mb-4">
             <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
             Business Solutions
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">See How We Can Help</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg">
             Comprehensive workspace solutions to support your business growth
           </p>
         </div>
