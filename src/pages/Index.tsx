@@ -2,6 +2,8 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import PropertyGrid from "@/components/PropertyGrid";
+import CityExplorer from "@/components/CityExplorer";
+import FeaturedOfficeTypes from "@/components/FeaturedOfficeTypes";
 import AboutMe from "@/components/AboutMe";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import BlogSection from "@/components/BlogSection";
@@ -42,6 +44,8 @@ const Index = () => {
       <Header />
       <main className="overflow-hidden">
         <Hero />
+        <CityExplorer />
+        <FeaturedOfficeTypes />
         <PropertyGrid />
         <AboutMe />
         <TestimonialCarousel />
