@@ -1,10 +1,9 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { properties as allProperties } from "@/lib/data";
 import PropertyCard from "./PropertyCard";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const PropertyGrid = () => {
   const [activeTab, setActiveTab] = useState("all");
@@ -16,43 +15,37 @@ const PropertyGrid = () => {
     setLoaded(true);
   }, []);
 
+  // Helper function to filter properties based on active tab
+  const getFilteredProperties = (tab) => {
+    switch (tab) {
+      case "all":
+        return allProperties;
+      case "office":
+        return allProperties.filter(p => p.type === "Office");
+      case "co-working":
+        return allProperties.filter(p => p.type === "Co-Working");
+      case "serviced-office":
+        return allProperties.filter(p => p.type === "Serviced Office");
+      case "virtual-office":
+        return allProperties.filter(p => p.type === "Virtual Office");
+      default:
+        return allProperties;
+    }
+  };
+
   useEffect(() => {
     // Filter properties based on the active tab
-    const filtered = 
-      activeTab === "all" 
-        ? allProperties 
-        : activeTab === "for-rent" 
-          ? allProperties.filter(p => p.type === "For Rent") 
-          : activeTab === "co-working"
-            ? allProperties.filter(p => p.type === "Co-working")
-            : allProperties.filter(p => p.type === "For Sale");
-    
+    const filtered = getFilteredProperties(activeTab);
     setVisibleProperties(filtered.slice(0, 3));
   }, [activeTab]);
 
   const loadMore = () => {
-    const filtered = 
-      activeTab === "all" 
-        ? allProperties 
-        : activeTab === "for-rent" 
-          ? allProperties.filter(p => p.type === "For Rent") 
-          : activeTab === "co-working"
-            ? allProperties.filter(p => p.type === "Co-working")
-            : allProperties.filter(p => p.type === "For Sale");
-    
+    const filtered = getFilteredProperties(activeTab);
     setVisibleProperties(filtered.slice(0, visibleProperties.length + 3));
   };
 
   const hasMore = () => {
-    const filtered = 
-      activeTab === "all" 
-        ? allProperties 
-        : activeTab === "for-rent" 
-          ? allProperties.filter(p => p.type === "For Rent") 
-          : activeTab === "co-working"
-            ? allProperties.filter(p => p.type === "Co-working")
-            : allProperties.filter(p => p.type === "For Sale");
-    
+    const filtered = getFilteredProperties(activeTab);
     return visibleProperties.length < filtered.length;
   };
 
@@ -71,12 +64,13 @@ const PropertyGrid = () => {
         </div>
 
         <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-12">
-          <div className="flex justify-center">
-            <TabsList>
-              <TabsTrigger value="all">All Spaces</TabsTrigger>
-              <TabsTrigger value="for-rent">Private Offices</TabsTrigger>
-              <TabsTrigger value="co-working">Co-working</TabsTrigger>
-              <TabsTrigger value="for-sale">Virtual Offices</TabsTrigger>
+          <div className="flex justify-center w-full overflow-x-auto pb-2">
+            <TabsList className="flex-nowrap inline-flex gap-2 px-1">
+              <TabsTrigger value="all" className="text-xs sm:text-sm px-3 whitespace-nowrap">All Spaces</TabsTrigger>
+              <TabsTrigger value="office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Office</TabsTrigger>
+              <TabsTrigger value="co-working" className="text-xs sm:text-sm px-3 whitespace-nowrap">Co-Working</TabsTrigger>
+              <TabsTrigger value="serviced-office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Serviced Office</TabsTrigger>
+              <TabsTrigger value="virtual-office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Virtual Office</TabsTrigger>
             </TabsList>
           </div>
         </Tabs>

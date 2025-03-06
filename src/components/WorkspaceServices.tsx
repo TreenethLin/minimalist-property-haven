@@ -1,38 +1,46 @@
-
 import { useState, useEffect } from "react";
-import { Building, Key, Clock, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Building, Key, Clock } from "lucide-react";
 
-interface ServiceCard {
+interface ServiceInfo {
   title: string;
   description: string;
   icon: React.ReactNode;
-  linkText: string;
-  linkUrl: string;
+  details: string[];
 }
 
-const services: ServiceCard[] = [
+const services: ServiceInfo[] = [
   {
     title: "Flexible Office Space",
     description: "Find the perfect workspace tailored to your business needs with flexible terms.",
     icon: <Building className="h-12 w-12 text-primary" />,
-    linkText: "View Spaces",
-    linkUrl: "/listings?type=flexible"
+    details: [
+      "Multiple office sizes available",
+      "Month-to-month or long-term options",
+      "Fully furnished and move-in ready",
+      "Access to shared amenities"
+    ]
   },
   {
     title: "Virtual Office Solutions",
     description: "Professional business address and mail handling without physical presence.",
     icon: <Key className="h-12 w-12 text-primary" />,
-    linkText: "Get Started",
-    linkUrl: "/listings?type=virtual-offices"
+    details: [
+      "Prestigious business address",
+      "Mail collection and forwarding",
+      "Call answering services",
+      "Access to meeting rooms when needed"
+    ]
   },
   {
     title: "Meeting Room Booking",
-    description: "Book professional meeting spaces by the hour for your important discussions.",
+    description: "Professional meeting spaces available by the hour for your important discussions.",
     icon: <Clock className="h-12 w-12 text-primary" />,
-    linkText: "Book Now",
-    linkUrl: "/listings?type=meeting-rooms"
+    details: [
+      "Various room sizes for 2-20 people",
+      "High-speed internet and AV equipment",
+      "Catering options available",
+      "Hourly, half-day, or full-day bookings"
+    ]
   }
 ];
 
@@ -44,38 +52,44 @@ const WorkspaceServices = () => {
   }, []);
 
   return (
-    <section className="py-20 px-6 md:px-10 bg-background">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-10 bg-background">
       <div className="container mx-auto">
-        <div className={`mb-12 transition-opacity duration-700 ease-in-out max-w-2xl ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`mb-10 sm:mb-12 transition-opacity duration-700 ease-in-out max-w-2xl mx-auto text-center ${loaded ? 'opacity-100' : 'opacity-0'}`}>
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium mb-4">
             <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
-            Business Solutions
+            Our Services
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">See How We Can Help</h2>
-          <p className="text-muted-foreground text-lg">
-            Comprehensive workspace solutions to support your business growth
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Workspace Solutions</h2>
+          <p className="text-muted-foreground text-base sm:text-lg">
+            A workspace options designed to support businesses of all sizes
           </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div 
               key={service.title}
-              className={`bg-card rounded-lg p-8 flex flex-col items-center text-center shadow-sm transition-all duration-700 hover:shadow-md ${
+              className={`bg-card rounded-lg p-6 sm:p-8 flex flex-col shadow-sm transition-all duration-700 ${
                 loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="mb-6 p-4 bg-secondary rounded-full">
+              <div className="mb-5 p-3 bg-secondary rounded-full w-fit">
                 {service.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-muted-foreground mb-6">{service.description}</p>
-              <Button asChild variant="outline" className="mt-auto group">
-                <Link to={service.linkUrl}>
-                  {service.linkText} <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+              <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+              <p className="text-muted-foreground mb-4">{service.description}</p>
+              <div className="mt-2">
+                <h4 className="text-sm font-medium mb-2">Features:</h4>
+                <ul className="space-y-2">
+                  {service.details.map((detail, i) => (
+                    <li key={i} className="flex items-start">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mt-1.5 mr-2"></span>
+                      <span className="text-sm">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           ))}
         </div>

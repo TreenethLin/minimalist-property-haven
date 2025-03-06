@@ -17,8 +17,8 @@ const BlogSection = () => {
   return (
     <section id="blog" className="py-24 px-6 md:px-10 bg-muted/30">
       <div className="container mx-auto">
-        <div className={`flex flex-col md:flex-row justify-between items-center mb-12 transition-opacity duration-700 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-          <div>
+        <div className="flex flex-col items-center mb-10">
+          <div className={`transition-opacity duration-700 ease-in-out text-center ${loaded ? 'opacity-100' : 'opacity-0'}`}>
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium mb-4">
               <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
               Latest Articles
@@ -27,14 +27,6 @@ const BlogSection = () => {
             <p className="text-muted-foreground text-lg max-w-2xl">
               Expert perspectives on real estate markets, design innovations, and investment opportunities.
             </p>
-          </div>
-          <div className="mt-6 md:mt-0">
-            <Button variant="outline" className="group" asChild>
-              <Link to="/blog">
-                View All Articles
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
           </div>
         </div>
 
@@ -50,6 +42,13 @@ const BlogSection = () => {
             </Link>
           ))}
         </div>
+
+        <div className="flex justify-center mt-12">
+          <Button asChild className="min-w-[150px]">
+            <Link to="/blog">View All Articles</Link>
+          </Button>
+        </div>
+        
       </div>
     </section>
   );

@@ -1,6 +1,4 @@
-
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface OfficeType {
@@ -8,6 +6,7 @@ interface OfficeType {
   propertyCount: number;
   image: string;
   slug: string;
+  type: string;
 }
 
 const officeTypes: OfficeType[] = [
@@ -15,43 +14,38 @@ const officeTypes: OfficeType[] = [
     title: "Private Offices",
     propertyCount: 24,
     image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2832&auto=format&fit=crop",
-    slug: "private-offices"
+    slug: "private-offices",
+    type: "Office"
   },
   {
     title: "Co-working Spaces",
     propertyCount: 18,
     image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=2069&auto=format&fit=crop",
-    slug: "co-working"
+    slug: "co-working",
+    type: "Co-Working"
   },
   {
-    title: "Meeting Rooms",
+    title: "Serviced Offices",
     propertyCount: 15,
     image: "https://images.unsplash.com/photo-1578574577315-3fbeb0cecdc2?q=80&w=2072&auto=format&fit=crop",
-    slug: "meeting-rooms"
+    slug: "serviced-offices",
+    type: "Serviced Office"
   },
   {
     title: "Virtual Offices",
     propertyCount: 20,
     image: "https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=2070&auto=format&fit=crop",
-    slug: "virtual-offices"
+    slug: "virtual-offices",
+    type: "Virtual Office"
   }
 ];
 
 const FeaturedOfficeTypes = () => {
   const [loaded, setLoaded] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     setLoaded(true);
   }, []);
-
-  const handlePrevious = () => {
-    setCurrentIndex((prev) => (prev === 0 ? officeTypes.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === officeTypes.length - 1 ? 0 : prev + 1));
-  };
 
   return (
     <section className="py-20 px-6 md:px-10 bg-muted/30">
@@ -67,30 +61,13 @@ const FeaturedOfficeTypes = () => {
               Discover the perfect workspace solution for your business needs
             </p>
           </div>
-
-          <div className={`flex gap-2 mt-6 transition-opacity duration-700 delay-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
-            <button 
-              onClick={handlePrevious}
-              className="p-2 rounded-full border border-border hover:bg-secondary transition-colors"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <button 
-              onClick={handleNext}
-              className="p-2 rounded-full border border-border hover:bg-secondary transition-colors"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {officeTypes.map((office, index) => (
             <Link
               key={office.title}
-              to={`/listings?type=${office.slug}`}
+              to={`/listings?type=${office.type}`}
               className={`group relative overflow-hidden rounded-lg transition-all duration-700 ease-out hover:-translate-y-1 shadow-sm ${
                 loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}

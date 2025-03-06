@@ -1,5 +1,5 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { blogPosts } from "@/lib/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,11 +7,15 @@ import BlogPost from "@/components/BlogPost";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Search, SlidersHorizontal, X } from "lucide-react";
 
 const BlogPosts = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(searchParams.get("search") || "");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    searchParams.get("category") || null
+  );
+  const [showFilters, setShowFilters] = useState(false);
 
   // Get unique categories
   const categories = Array.from(new Set(blogPosts.map(post => post.category)));
@@ -30,8 +34,23 @@ const BlogPosts = () => {
     return matchesSearch && matchesCategory;
   });
 
+  // Update URL params when filters change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    
+    if (searchTerm) params.set("search", searchTerm);
+    if (selectedCategory) params.set("category", selectedCategory);
+    
+    setSearchParams(params);
+  }, [searchTerm, selectedCategory, setSearchParams]);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
+  };
+
+  const resetFilters = () => {
+    setSearchTerm("");
+    setSelectedCategory(null);
   };
 
   return (
@@ -51,50 +70,52 @@ const BlogPosts = () => {
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8 mb-12">
-              <div className="md:w-2/3">
-                <form onSubmit={handleSearch} className="relative mb-8">
+            <div className="bg-card rounded-lg shadow-md p-6 mb-8">
+              <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
+                <div className="relative flex-grow">
                   <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                   <Input
                     type="text"
                     placeholder="Search articles..."
+                    className="pl-9"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-9"
                   />
-                </form>
+                </div>
+                <Button type="submit">Search</Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="flex items-center gap-2"
+                >
+                  <SlidersHorizontal className="h-4 w-4" />
+                  Categories
+                  {selectedCategory && (
+                    <Badge className="ml-2 px-2 py-0 h-5 text-xs">1</Badge>
+                  )}
+                </Button>
+              </form>
 
-                {filteredPosts.length === 0 ? (
-                  <div className="text-center py-16 bg-card rounded-lg border">
-                    <h3 className="text-xl font-semibold mb-2">No articles found</h3>
-                    <p className="text-muted-foreground mb-6">
-                      Try adjusting your search or browse all categories
-                    </p>
-                    <Button 
-                      onClick={() => {
-                        setSearchTerm("");
-                        setSelectedCategory(null);
-                      }}
+              {showFilters && (
+                <div className="mt-6 pt-6 border-t">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="font-medium">Filter Articles</h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={resetFilters}
+                      className="text-muted-foreground h-8 px-2"
                     >
-                      View All Articles
+                      <X className="h-3 w-3 mr-1" />
+                      Reset All
                     </Button>
                   </div>
-                ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {filteredPosts.map(post => (
-                      <BlogPost key={post.id} post={post} />
-                    ))}
-                  </div>
-                )}
-              </div>
 
-              <div className="md:w-1/3">
-                <div className="bg-card rounded-lg border p-6 sticky top-24">
-                  <h3 className="font-semibold mb-4">Categories</h3>
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                     <Button
                       variant={selectedCategory === null ? "default" : "outline"}
-                      className="w-full justify-start"
+                      className="justify-start"
                       onClick={() => setSelectedCategory(null)}
                     >
                       All Categories
@@ -107,7 +128,7 @@ const BlogPosts = () => {
                       <Button
                         key={category}
                         variant={selectedCategory === category ? "default" : "outline"}
-                        className="w-full justify-start"
+                        className="justify-start"
                         onClick={() => setSelectedCategory(category)}
                       >
                         {category}
@@ -117,32 +138,33 @@ const BlogPosts = () => {
                       </Button>
                     ))}
                   </div>
-
-                  <div className="border-t mt-6 pt-6">
-                    <h3 className="font-semibold mb-4">Recent Posts</h3>
-                    <div className="space-y-4">
-                      {blogPosts.slice(0, 3).map(post => (
-                        <div key={post.id} className="flex gap-3">
-                          <div className="h-16 w-16 rounded overflow-hidden flex-shrink-0">
-                            <img 
-                              src={post.coverImage} 
-                              alt={post.title} 
-                              className="h-full w-full object-cover"
-                            />
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-sm line-clamp-2 hover:text-primary transition-colors">
-                              {post.title}
-                            </h4>
-                            <p className="text-xs text-muted-foreground">{post.date}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
-              </div>
+              )}
             </div>
+
+            {filteredPosts.length === 0 ? (
+              <div className="text-center py-16 bg-card rounded-lg border">
+                <h3 className="text-xl font-semibold mb-2">No articles found</h3>
+                <p className="text-muted-foreground mb-6">
+                  Try adjusting your search or browse all categories
+                </p>
+                <Button onClick={resetFilters}>
+                  View All Articles
+                </Button>
+              </div>
+            ) : (
+              <>
+                <p className="mb-6 text-muted-foreground">
+                  Showing {filteredPosts.length} articles
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                  {filteredPosts.map(post => (
+                    <BlogPost key={post.id} post={post} />
+                  ))}
+                </div>
+              </>
+            )}
+
           </div>
         </section>
       </main>

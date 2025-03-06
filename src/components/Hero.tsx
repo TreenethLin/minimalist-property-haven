@@ -1,13 +1,13 @@
-
 import { useState, useEffect } from "react";
 import { ArrowRight, Building, Building2, Briefcase, Laptop, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
+import { Property } from "@/lib/data"; // Import the Property type
 
 const Hero = () => {
   const [loaded, setLoaded] = useState(false);
-  const [propertyType, setPropertyType] = useState('office'); // 'office', 'coworking', or 'virtual'
+  const [propertyType, setPropertyType] = useState<Property['type']>('Office'); // Use the type from data.ts
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
 
@@ -39,32 +39,27 @@ const Hero = () => {
         <div className={`space-y-6 max-w-xl transition-opacity duration-700 ease-in-out ${loaded ? 'opacity-100' : 'opacity-0'} flex flex-col justify-center`}>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight text-gray-900">
             Find Your Perfect <br />
-            <span className="text-gray-900">Workspace Solution</span>
+            <span className="text-gray-900">Workspace</span>
           </h1>
           <p className="text-lg text-muted-foreground">
             From private offices to co-working spaces and virtual solutions, find the perfect workspace for your business needs.
           </p>
 
           {/* Property Type Tabs */}
-          <div className="bg-white rounded-lg shadow-sm inline-flex p-1 mt-6 max-w-md">
-            <button
-              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'office' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
-              onClick={() => setPropertyType('office')}
-            >
-              Office
-            </button>
-            <button
-              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'coworking' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
-              onClick={() => setPropertyType('coworking')}
-            >
-              Co-working
-            </button>
-            <button
-              className={`px-10 py-3 rounded-md font-medium text-sm transition-colors ${propertyType === 'virtual' ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'}`}
-              onClick={() => setPropertyType('virtual')}
-            >
-              Virtual
-            </button>
+          <div className="bg-white rounded-lg shadow-sm flex flex-wrap p-1 mt-6">
+            {['Office', 'Co-Working', 'Virtual Office', 'Serviced Office'].map((type) => (
+              <button
+                key={type}
+                className={`flex-1 min-w-[100px] py-3 rounded-md font-medium text-sm transition-colors ${
+                  propertyType === type ? 'bg-primary text-white' : 'text-gray-700 hover:bg-gray-100'
+                }`}
+                onClick={() => setPropertyType(type as Property['type'])}
+              >
+                {type === 'Co-Working' ? 'Co-working' : 
+                 type === 'Virtual Office' ? 'Virtual' : 
+                 type === 'Serviced Office' ? 'Serviced' : type}
+              </button>
+            ))}
           </div>
 
           {/* Search Box */}
@@ -73,7 +68,7 @@ const Hero = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <Input 
                 className="pl-10 pr-4 py-6 text-base" 
-                placeholder={`Search ${propertyType === 'office' ? 'Office Spaces' : propertyType === 'coworking' ? 'Co-working Spaces' : 'Virtual Office Solutions'}`}
+                placeholder={`Search ${propertyType} Spaces`}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -100,7 +95,7 @@ const Hero = () => {
               <div className="bg-primary/10 p-1 rounded-full">
                 <Building2 className="h-4 w-4 text-primary" />
               </div>
-              Open Workspaces
+              Workspaces
             </Button>
             <Button 
               variant="outline" 

@@ -7,13 +7,15 @@ import GoogleMap from "@/components/GoogleMap";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-  Bed, Bath, Square, MapPin, Calendar, Check, 
-  ArrowLeft, Share2, Heart, Send, MapIcon
+  Bed, Bath, Square, MapPin, Check, 
+  ArrowLeft, Share2, Heart, Send, MapIcon,
+  Users
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { agent } from "@/lib/data";
+import { Badge } from "@/components/ui/badge";
 
 const PropertyDetail = () => {
   const { id } = useParams();
@@ -150,16 +152,26 @@ const PropertyDetail = () => {
                   </div>
                   
                   <div className="text-3xl font-bold text-primary mb-6">
-                    {property.type === "For Rent" 
+                    {(property.type === "Office" || property.type === "Co-Working") 
                       ? `$${property.price.toLocaleString()}/mo` 
                       : `$${property.price.toLocaleString()}`}
                   </div>
-                  
+
                   <div className="grid grid-cols-3 gap-4 mb-6">
                     <div className="flex flex-col items-center p-3 bg-muted rounded-lg">
-                      <Bed className="h-5 w-5 mb-1 text-primary" />
-                      <span className="text-sm text-muted-foreground">Bedrooms</span>
-                      <span className="font-medium">{property.bedrooms}</span>
+                      {property.type === "Co-Working" ? (
+                        <>
+                          <Users className="h-5 w-5 mb-1 text-primary" />
+                          <span className="text-sm text-muted-foreground">Capacity</span>
+                          <span className="font-medium">{property.capacity} people</span>
+                        </>
+                      ) : (
+                        <>
+                          <Bed className="h-5 w-5 mb-1 text-primary" />
+                          <span className="text-sm text-muted-foreground">Size</span>
+                          <span className="font-medium">{property.size} sq ft</span>
+                        </>
+                      )}
                     </div>
                     <div className="flex flex-col items-center p-3 bg-muted rounded-lg">
                       <Bath className="h-5 w-5 mb-1 text-primary" />
@@ -169,15 +181,15 @@ const PropertyDetail = () => {
                     <div className="flex flex-col items-center p-3 bg-muted rounded-lg">
                       <Square className="h-5 w-5 mb-1 text-primary" />
                       <span className="text-sm text-muted-foreground">Area</span>
-                      <span className="font-medium">{property.sqft.toLocaleString()} sq ft</span>
+                      <span className="font-medium">{property.spaceSize.toLocaleString()} sq ft</span>
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {property.features.map((feature, index) => (
-                      <span key={index} className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-xs">
-                        {feature}
-                      </span>
+                    {property.amenities && property.amenities.map((amenity, index) => (
+                      <Badge variant="outline" key={index} className="font-normal">
+                        {amenity}
+                      </Badge>
                     ))}
                   </div>
                   
@@ -234,7 +246,7 @@ const PropertyDetail = () => {
               <TabsList className="mb-8">
                 <TabsTrigger value="description">Description</TabsTrigger>
                 <TabsTrigger value="details">Details</TabsTrigger>
-                <TabsTrigger value="features">Features</TabsTrigger>
+                <TabsTrigger value="amenities">Amenities</TabsTrigger>
                 <TabsTrigger value="location">Location</TabsTrigger>
               </TabsList>
               
@@ -260,16 +272,26 @@ const PropertyDetail = () => {
                   </div>
                   <div className="flex justify-between py-2 border-b">
                     <span className="text-muted-foreground">Property Size</span>
-                    <span className="font-medium">{property.sqft.toLocaleString()} sq ft</span>
+                    <span className="font-medium">{property.spaceSize.toLocaleString()} sq ft</span>
                   </div>
-                  <div className="flex justify-between py-2 border-b">
-                    <span className="text-muted-foreground">Bedrooms</span>
-                    <span className="font-medium">{property.bedrooms}</span>
-                  </div>
+                  {property.type === "Co-Working" ? (
+                    <div className="flex justify-between py-2 border-b">
+                      <span className="text-muted-foreground">Capacity</span>
+                      <span className="font-medium">{property.capacity} people</span>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex justify-between py-2 border-b">
+                        <span className="text-muted-foreground">Size</span>
+                        <span className="font-medium">{property.size} sq ft</span>
+                      </div>
+                    </>
+                  )}
                   <div className="flex justify-between py-2 border-b">
                     <span className="text-muted-foreground">Bathrooms</span>
                     <span className="font-medium">{property.bathrooms}</span>
                   </div>
+
                   <div className="flex justify-between py-2 border-b">
                     <span className="text-muted-foreground">Year Built</span>
                     <span className="font-medium">2018</span>
@@ -289,7 +311,7 @@ const PropertyDetail = () => {
                 </div>
               </TabsContent>
               
-              <TabsContent value="features" className="space-y-6">
+              <TabsContent value="amenities" className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {property.features.map((feature, index) => (
                     <div key={index} className="flex items-start">
@@ -446,7 +468,7 @@ const PropertyDetail = () => {
                       <div className="p-4">
                         <h3 className="font-semibold mb-1">{similarProperty.title}</h3>
                         <div className="text-primary font-medium mb-2">
-                          {similarProperty.type === "For Rent" 
+                          {(similarProperty.type === "Office" || similarProperty.type === "Co-Working") 
                             ? `$${similarProperty.price.toLocaleString()}/mo` 
                             : `$${similarProperty.price.toLocaleString()}`}
                         </div>

@@ -49,8 +49,8 @@ const Header = () => {
         isScrolled ? "bg-background/95 backdrop-blur-sm shadow-sm" : "bg-background/80 backdrop-blur-sm"
       )}
     >
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between">
+      <div className="max-w-screen-xl mx-auto w-full">
+        <div className="flex items-center justify-between w-full">
           <div className="flex items-center">
             <div className="bg-primary rounded-full p-2 mr-2">
               <Building2 className="h-5 w-5 text-white" />
@@ -91,7 +91,8 @@ const Header = () => {
 
       {/* Mobile Menu - Solid White Background */}
       {isOpen && (
-        <div className="fixed inset-0 bg-white z-40 md:hidden mobile-menu-container">
+        <div className="fixed inset-0 bg-background md:hidden mobile-menu-container" 
+             style={{ zIndex: 100 }}>
           <div className="relative h-full flex flex-col p-6">
             {/* Close button */}
             <button 
