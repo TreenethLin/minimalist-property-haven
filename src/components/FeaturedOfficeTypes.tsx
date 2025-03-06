@@ -56,8 +56,8 @@ const FeaturedOfficeTypes = () => {
   return (
     <section className="py-20 px-6 md:px-10 bg-muted/30">
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-10">
-          <div className={`transition-opacity duration-700 ease-in-out text-center md:text-left ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="flex flex-col items-center mb-10">
+          <div className={`transition-opacity duration-700 ease-in-out text-center ${loaded ? 'opacity-100' : 'opacity-0'}`}>
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary border border-border text-sm font-medium mb-4">
               <span className="inline-block w-2 h-2 rounded-full bg-primary mr-2"></span>
               Workspace Solutions
@@ -68,7 +68,7 @@ const FeaturedOfficeTypes = () => {
             </p>
           </div>
 
-          <div className={`flex gap-2 mt-6 md:mt-0 transition-opacity duration-700 delay-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+          <div className={`flex gap-2 mt-6 transition-opacity duration-700 delay-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
             <button 
               onClick={handlePrevious}
               className="p-2 rounded-full border border-border hover:bg-secondary transition-colors"

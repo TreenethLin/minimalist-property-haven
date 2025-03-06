@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import PropertyGrid from "@/components/PropertyGrid";
 import CityExplorer from "@/components/CityExplorer";
 import FeaturedOfficeTypes from "@/components/FeaturedOfficeTypes";
+import WorkspaceServices from "@/components/WorkspaceServices";
 import AboutMe from "@/components/AboutMe";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
 import BlogSection from "@/components/BlogSection";
@@ -46,6 +47,7 @@ const Index = () => {
         <Hero />
         <CityExplorer />
         <FeaturedOfficeTypes />
+        <WorkspaceServices />
         <PropertyGrid />
         <AboutMe />
         <TestimonialCarousel />
