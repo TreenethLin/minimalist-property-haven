@@ -29,6 +29,8 @@ const Listings = () => {
     spaceSize: parseInt(searchParams.get("spaceSize") || "0"),
     features: [] as string[],
   });
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
+
 
   // Initialize features from URL params and trigger animation after component mounts
   useEffect(() => {
@@ -235,14 +237,14 @@ const Listings = () => {
                       onValueChange={(value) => setFilters({ ...filters, type: value })}
                       className="mb-4"
                     >
-                      <div className="flex justify-start w-full overflow-x-auto pb-2">
-                      <TabsList className="flex-nowrap inline-flex gap-2 px-1">
-                        <TabsTrigger value="all" className="text-xs sm:text-sm px-3 whitespace-nowrap">All Spaces</TabsTrigger>
-                        <TabsTrigger value="office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Office</TabsTrigger>
-                        <TabsTrigger value="co-working" className="text-xs sm:text-sm px-3 whitespace-nowrap">Co-Working</TabsTrigger>
-                        <TabsTrigger value="serviced-office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Serviced Office</TabsTrigger>
-                        <TabsTrigger value="virtual-office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Virtual Office</TabsTrigger>
-                      </TabsList>
+                      <div className="flex justify-center md:justify-start w-full">
+                        <TabsList className="bg-muted h-auto flex flex-wrap justify-center md:justify-start gap-2 p-2 rounded-md">
+                          <TabsTrigger value="all" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">All Spaces</TabsTrigger>
+                          <TabsTrigger value="office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Office</TabsTrigger>
+                          <TabsTrigger value="co-working" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Co-Working</TabsTrigger>
+                          <TabsTrigger value="serviced-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Serviced Office</TabsTrigger>
+                          <TabsTrigger value="virtual-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Virtual Office</TabsTrigger>
+                        </TabsList>
                       </div>
                     </Tabs>
                   </div>
@@ -312,7 +314,7 @@ const Listings = () => {
                   <div className="mt-6 pt-4 border-t">
                     <h4 className="text-sm font-medium mb-3">Amenities & Features</h4>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                      {allFeatures.map((feature) => (
+                      {allFeatures.slice(0, showAllFeatures ? allFeatures.length : 6).map((feature) => (
                         <div key={feature} className="flex items-center space-x-2">
                           <Checkbox
                             id={`feature-${feature}`}
@@ -328,6 +330,16 @@ const Listings = () => {
                         </div>
                       ))}
                     </div>
+                    {allFeatures.length > 6 && (
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={() => setShowAllFeatures(!showAllFeatures)}
+                        className="mt-3 text-xs font-medium text-primary"
+                      >
+                        {showAllFeatures ? "Show Less" : `Show All (${allFeatures.length})`}
+                      </Button>
+                    )}
                   </div>
 
                   <div className="mt-6 flex justify-end">

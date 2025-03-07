@@ -185,12 +185,18 @@ const PropertyDetail = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {property.amenities && property.amenities.map((amenity, index) => (
-                      <Badge variant="outline" key={index} className="font-normal">
-                        {amenity}
-                      </Badge>
-                    ))}
+                  <div className="mb-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {property.amenities && property.amenities.map((amenity, index) => (
+                        <Badge 
+                          variant="outline" 
+                          key={index} 
+                          className="font-normal justify-center py-1.5 text-center"
+                        >
+                          {amenity}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
                   
                   <div className="flex flex-wrap gap-3">
@@ -352,9 +358,73 @@ const PropertyDetail = () => {
                   This property is located at {property.address}. The location offers convenient access to nearby amenities, including shopping centers, restaurants, public transportation, and more.
                 </p>
                 <GoogleMap address={property.address} />
+                
+                {/* Nearby Places */}
+                <div className="mt-8">
+                  <h3 className="text-xl font-semibold mb-4">Nearby Places</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="bg-muted/40 rounded-lg p-5 border border-border/50">
+                      <div className="flex items-center mb-3">
+                        <div className="bg-primary/10 p-2 rounded-full mr-3">
+                          <MapPin className="h-5 w-5 text-primary" />
+                        </div>
+                        <h4 className="font-medium">Transportation</h4>
+                      </div>
+                      <ul className="space-y-2 pl-10 text-muted-foreground">
+                        <li>Downtown Metro Station <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.3 miles</span></li>
+                        <li>Bus Stop #42 <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.1 miles</span></li>
+                        <li>International Airport <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">12 miles</span></li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-muted/40 rounded-lg p-5 border border-border/50">
+                      <div className="flex items-center mb-3">
+                        <div className="bg-primary/10 p-2 rounded-full mr-3">
+                          <Users className="h-5 w-5 text-primary" />
+                        </div>
+                        <h4 className="font-medium">Education</h4>
+                      </div>
+                      <ul className="space-y-2 pl-10 text-muted-foreground">
+                        <li>Lincoln Elementary School <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.5 miles</span></li>
+                        <li>Washington High School <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">1.2 miles</span></li>
+                        <li>State University <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">3.5 miles</span></li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-muted/40 rounded-lg p-5 border border-border/50">
+                      <div className="flex items-center mb-3">
+                        <div className="bg-primary/10 p-2 rounded-full mr-3">
+                          <Share2 className="h-5 w-5 text-primary" />
+                        </div>
+                        <h4 className="font-medium">Shopping & Dining</h4>
+                      </div>
+                      <ul className="space-y-2 pl-10 text-muted-foreground">
+                        <li>Central Mall <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">1.8 miles</span></li>
+                        <li>Farmers Market <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.7 miles</span></li>
+                        <li>Restaurant Row <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.4 miles</span></li>
+                        <li>Grocery Store <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.3 miles</span></li>
+                      </ul>
+                    </div>
+                    
+                    <div className="bg-muted/40 rounded-lg p-5 border border-border/50">
+                      <div className="flex items-center mb-3">
+                        <div className="bg-primary/10 p-2 rounded-full mr-3">
+                          <Heart className="h-5 w-5 text-primary" />
+                        </div>
+                        <h4 className="font-medium">Health & Recreation</h4>
+                      </div>
+                      <ul className="space-y-2 pl-10 text-muted-foreground">
+                        <li>Community Hospital <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">2.3 miles</span></li>
+                        <li>City Park <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.6 miles</span></li>
+                        <li>Fitness Center <span className="text-xs bg-muted px-2 py-0.5 rounded-full ml-1">0.8 miles</span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+
         </section>
         
         {/* Inquiry Form */}

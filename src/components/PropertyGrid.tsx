@@ -64,13 +64,13 @@ const PropertyGrid = () => {
         </div>
 
         <Tabs defaultValue="all" value={activeTab} onValueChange={setActiveTab} className="mb-12">
-          <div className="flex justify-center w-full overflow-x-auto pb-2">
-            <TabsList className="flex-nowrap inline-flex gap-2 px-1">
-              <TabsTrigger value="all" className="text-xs sm:text-sm px-3 whitespace-nowrap">All Spaces</TabsTrigger>
-              <TabsTrigger value="office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Office</TabsTrigger>
-              <TabsTrigger value="co-working" className="text-xs sm:text-sm px-3 whitespace-nowrap">Co-Working</TabsTrigger>
-              <TabsTrigger value="serviced-office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Serviced Office</TabsTrigger>
-              <TabsTrigger value="virtual-office" className="text-xs sm:text-sm px-3 whitespace-nowrap">Virtual Office</TabsTrigger>
+          <div className="flex justify-center w-full">
+            <TabsList className="bg-muted h-auto flex flex-wrap justify-center gap-2 p-2 rounded-md">
+              <TabsTrigger value="all" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">All Spaces</TabsTrigger>
+              <TabsTrigger value="office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Office</TabsTrigger>
+              <TabsTrigger value="co-working" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Co-Working</TabsTrigger>
+              <TabsTrigger value="serviced-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Serviced Office</TabsTrigger>
+              <TabsTrigger value="virtual-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Virtual Office</TabsTrigger>
             </TabsList>
           </div>
         </Tabs>
