@@ -16,7 +16,7 @@ const PropertyGrid = () => {
   }, []);
 
   // Helper function to filter properties based on active tab
-  const getFilteredProperties = (tab) => {
+  const getFilteredProperties = (tab: string) => {
     switch (tab) {
       case "all":
         return allProperties;
@@ -26,8 +26,6 @@ const PropertyGrid = () => {
         return allProperties.filter(p => p.type === "Co-Working");
       case "serviced-office":
         return allProperties.filter(p => p.type === "Serviced Office");
-      case "virtual-office":
-        return allProperties.filter(p => p.type === "Virtual Office");
       default:
         return allProperties;
     }
@@ -41,12 +39,14 @@ const PropertyGrid = () => {
 
   const loadMore = () => {
     const filtered = getFilteredProperties(activeTab);
-    setVisibleProperties(filtered.slice(0, visibleProperties.length + 3));
+    // max 6 properties
+    const nextBatch = filtered.slice(visibleProperties.length, visibleProperties.length + 3);
+    setVisibleProperties([...visibleProperties, ...nextBatch]);
   };
 
   const hasMore = () => {
     const filtered = getFilteredProperties(activeTab);
-    return visibleProperties.length < filtered.length;
+    return visibleProperties.length < Math.min(filtered.length, 6);
   };
 
   return (
@@ -70,7 +70,6 @@ const PropertyGrid = () => {
               <TabsTrigger value="office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Office</TabsTrigger>
               <TabsTrigger value="co-working" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Co-Working</TabsTrigger>
               <TabsTrigger value="serviced-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Serviced Office</TabsTrigger>
-              <TabsTrigger value="virtual-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Virtual Office</TabsTrigger>
             </TabsList>
           </div>
         </Tabs>

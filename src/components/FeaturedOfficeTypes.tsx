@@ -31,13 +31,6 @@ const officeTypes: OfficeType[] = [
     slug: "serviced-offices",
     type: "Serviced Office"
   },
-  {
-    title: "Virtual Offices",
-    propertyCount: 20,
-    image: "https://images.unsplash.com/photo-1577412647305-991150c7d163?q=80&w=2070&auto=format&fit=crop",
-    slug: "virtual-offices",
-    type: "Virtual Office"
-  }
 ];
 
 const FeaturedOfficeTypes = () => {
@@ -63,7 +56,7 @@ const FeaturedOfficeTypes = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {officeTypes.map((office, index) => (
             <Link
               key={office.title}

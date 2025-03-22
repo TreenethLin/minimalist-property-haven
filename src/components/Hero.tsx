@@ -47,7 +47,7 @@ const Hero = () => {
 
           {/* Property Type Tabs */}
           <div className="bg-white rounded-lg shadow-sm flex flex-wrap p-1 mt-6">
-            {['Office', 'Co-Working', 'Virtual Office', 'Serviced Office'].map((type) => (
+            {['Office', 'Co-Working', 'Serviced Office'].map((type) => (
               <button
                 key={type}
                 className={`flex-1 min-w-[100px] py-3 rounded-md font-medium text-sm transition-colors ${
@@ -56,7 +56,6 @@ const Hero = () => {
                 onClick={() => setPropertyType(type as Property['type'])}
               >
                 {type === 'Co-Working' ? 'Co-working' : 
-                 type === 'Virtual Office' ? 'Virtual' : 
                  type === 'Serviced Office' ? 'Serviced' : type}
               </button>
             ))}
@@ -106,16 +105,6 @@ const Hero = () => {
                 <Briefcase className="h-4 w-4 text-primary" />
               </div>
               Meeting Rooms
-            </Button>
-            <Button 
-              variant="outline" 
-              className="rounded-full bg-white shadow-sm flex items-center gap-2 hover:bg-primary/10"
-              onClick={() => handleCategoryClick('virtual')}
-            >
-              <div className="bg-primary/10 p-1 rounded-full">
-                <Laptop className="h-4 w-4 text-primary" />
-              </div>
-              Virtual Offices
             </Button>
           </div>
         </div>

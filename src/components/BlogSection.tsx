@@ -14,14 +14,6 @@ const BlogSection = () => {
     setLoaded(true);
   }, []);
 
-  const loadMore = () => {
-    setVisiblePosts(prev => Math.min(prev + 3, blogPosts.length));
-  };
-
-  const hasMore = () => {
-    return visiblePosts < blogPosts.length;
-  };
-
   return (
     <section id="blog" className="py-24 px-6 md:px-10 bg-muted/30">
       <div className="container mx-auto">
@@ -52,15 +44,6 @@ const BlogSection = () => {
         </div>
 
         <div className="flex justify-center mt-12 gap-4">
-          {hasMore() && (
-            <Button 
-              variant="outline" 
-              onClick={loadMore}
-              className="min-w-[150px]"
-            >
-              Load More
-            </Button>
-          )}
           <Button asChild className="min-w-[150px]">
             <Link to="/blog">View All Articles</Link>
           </Button>

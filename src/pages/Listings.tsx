@@ -53,7 +53,6 @@ const Listings = () => {
       "office": "Office",
       "co-working": "Co-Working",
       "serviced-office": "Serviced Office",
-      "virtual-office": "Virtual Office"
     };
     
     if (type === "all") return allProperties;
@@ -243,7 +242,6 @@ const Listings = () => {
                           <TabsTrigger value="office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Office</TabsTrigger>
                           <TabsTrigger value="co-working" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Co-Working</TabsTrigger>
                           <TabsTrigger value="serviced-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Serviced Office</TabsTrigger>
-                          <TabsTrigger value="virtual-office" className="text-xs sm:text-sm px-3 data-[state=active]:bg-background">Virtual Office</TabsTrigger>
                         </TabsList>
                       </div>
                     </Tabs>

@@ -13,7 +13,7 @@ export interface Property {
   description: string;
   features: string[];
   images: string[];
-  type: 'Office' | 'Co-Working' | 'Serviced Office' | 'Virtual Office';
+  type: 'Office' | 'Co-Working' | 'Serviced Office';
   status: 'Available' | 'Pending' | 'Leased';
 }
 
@@ -124,23 +124,6 @@ export const properties: Property[] = [
   },
   {
     id: "p4",
-    title: "Virtual Office Package",
-    address: "101 Metropolitan Tower, Downtown",
-    price: 150,
-    size: 0,
-    sqft: 0,
-    spaceSize: 0,
-    capacity: 1,
-    bathrooms: 0,
-    amenities: ["Mail Handling", "Call Answering", "Business Address", "Meeting Room Credits"],
-    description: "Professional virtual office solution providing a prestigious business address, mail handling, and call answering services. Includes meeting room credits and day pass access to physical workspace.",
-    features: ["Professional Address", "Mail Forwarding", "Reception Services", "Day Pass Included", "Meeting Credits"],
-    images: ["https://images.unsplash.com/photo-1577412647305-991150c7d163?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"],
-    type: "Virtual Office",
-    status: "Available"
-  },
-  {
-    id: "p5",
     title: "Industrial Loft Office",
     address: "202 Factory Road, Warehouse District",
     price: 2200,
@@ -157,7 +140,7 @@ export const properties: Property[] = [
     status: "Available"
   },
   {
-    id: "p6",
+    id: "p5",
     title: "Corporate Headquarters",
     address: "303 Executive Plaza, Business Park",
     price: 10000,
@@ -172,7 +155,7 @@ export const properties: Property[] = [
     images: ["https://images.unsplash.com/photo-1497215842964-222b430dc094?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"],
     type: "Serviced Office",
     status: "Available"
-  }
+  },
 ];
 
 export const testimonials: Testimonial[] = [

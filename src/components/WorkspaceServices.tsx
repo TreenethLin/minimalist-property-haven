@@ -21,17 +21,6 @@ const services: ServiceInfo[] = [
     ]
   },
   {
-    title: "Virtual Office Solutions",
-    description: "Professional business address and mail handling without physical presence.",
-    icon: <Key className="h-12 w-12 text-primary" />,
-    details: [
-      "Prestigious business address",
-      "Mail collection and forwarding",
-      "Call answering services",
-      "Access to meeting rooms when needed"
-    ]
-  },
-  {
     title: "Meeting Room Booking",
     description: "Professional meeting spaces available by the hour for your important discussions.",
     icon: <Clock className="h-12 w-12 text-primary" />,
@@ -40,6 +29,17 @@ const services: ServiceInfo[] = [
       "High-speed internet and AV equipment",
       "Catering options available",
       "Hourly, half-day, or full-day bookings"
+    ]
+  },
+  {
+    title: "24/7 Secure Access",
+    description: "Round-the-clock access to your workspace with enterprise-grade security systems.",
+    icon: <Key className="h-12 w-12 text-primary" />,
+    details: [
+      "Keycard entry system for all members",
+      "Biometric security options available",
+      "24/7 surveillance and monitoring",
+      "Secure private network and Wi-Fi"
     ]
   }
 ];
